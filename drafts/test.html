@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2018-11-04 Sun 10:54 -->
+<meta charset="utf-8">
+<title>Test post. I need a long title to style this in the right way :-)</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Anders Dalskov">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="/res/style.css" type="text/css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="/res/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<ul><a href="/">Front</a><a href="/blog">Blog</a><a href="/contact.html">Contact</a><a href="/links.html">Links</a></ul><hr>
+</div>
+<div id="content">
+<h1 class="title">Test post. I need a long title to style this in the right way :-)</h1>
+<div class="PREVIEW">
+<p>
+This is the preview. It is displayed on the blog's front page. The idea is to
+provide the reader with a small hint&#x2014;an abstract, if you will&#x2014;about the
+content of the concrete post in question. Gonna put some math here also :)
+</p>
+
+<p>
+\(a + b\) and \(2 + c\) and \(\mathcal{C} + \mathsf{abc}\). That should suffice.
+</p>
+
+</div>
+
+<p>
+Hey there! This is just a test post, to test things. Specifically, it tests how
+varies environments behaves and serves as a way for me (the writer) to style it
+according to my liking
+</p>
+
+<div id="outline-container-org312da32" class="outline-2">
+<h2 id="org312da32">Here's a level 1 header</h2>
+<div class="outline-text-2" id="text-org312da32">
+<p>
+And some text.
+</p>
+</div>
+
+<div id="outline-container-org7d57d1f" class="outline-3">
+<h3 id="org7d57d1f">Here's a level 2 header</h3>
+<div class="outline-text-3" id="text-org7d57d1f">
+</div>
+<div id="outline-container-orgb6fc47d" class="outline-4">
+<h4 id="orgb6fc47d">And a level 3 header</h4>
+<div class="outline-text-4" id="text-orgb6fc47d">
+</div>
+<div id="outline-container-org29d86dd" class="outline-5">
+<h5 id="org29d86dd">Level 4</h5>
+<div class="outline-text-5" id="text-org29d86dd">
+</div>
+<ul class="org-ul">
+<li><a id="org63a006b"></a>Level 5 (wow, how far does this thing go???)<br></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org58a6a79" class="outline-2">
+<h2 id="org58a6a79">Code and what-not</h2>
+<div class="outline-text-2" id="text-org58a6a79">
+<p>
+An example block. This should be formatted as code, but without any kind of
+special highlighting.
+</p>
+<pre class="example">
+Hey there. I'm monospaced 
+</pre>
+
+<pre class="example">
+for i in range(10):
+    print("this is python. hissss")
+</pre>
+
+<p>
+Now this is python code
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">for</span> i <span style="color: #0000FF;">in</span> <span style="color: #006FE0;">range</span>(10):
+    <span style="color: #0000FF;">print</span>(<span style="color: #008000;">'this is also python. hissss'</span>)
+</pre>
+</div>
+
+<p>
+And some elisp (this thing is powered by Emacs, after all)
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(<span style="color: #0000FF;">dotimes</span> (i 10)
+  (message <span style="color: #008000;">"this is _not_ a python. not hisss"</span>))
+</pre>
+</div>
+
+<p>
+And some C, for good measure. (does <code>puts</code> include a newline be default? I
+can't remeber&#x2026;)
+</p>
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #0000FF;">for</span> (<span style="color: #6434A3;">size_t</span> <span style="color: #BA36A5;">i</span> = 0; i &lt; 10; i++) {
+        puts(<span style="color: #008000;">"hello, world"</span>);
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org89723bd" class="outline-2">
+<h2 id="org89723bd">Images</h2>
+<div class="outline-text-2" id="text-org89723bd">
+<p>
+Lets see how this bad boy handles images. While reading a paper, I came
+accross this fun snippet. I cannot remember what the paper was about, but I
+cannot help but fell it wasn't done entirely unintentionally.
+</p>
+
+<figure id="test-image">
+<img src="/res/lmao.png" alt="dummy image"></img>
+<figcaption>
+<span class="figure-caption">figure 1: </span>heheh
+</figcaption>
+</figure>
+</div>
+</div>
+
+<div id="outline-container-orgc672ef5" class="outline-2">
+<h2 id="orgc672ef5">Sound</h2>
+<div class="outline-text-2" id="text-orgc672ef5">
+<p>
+I wonder how this works&#x2026;
+</p>
+<figure id="eternal-flame">
+<audio controls>
+<source src="/res/eternal-flame.ogg" type="audio/ogg">
+This browser does not support HTML5 audio.
+</audio>
+<figcaption>
+<span class="figure-caption">audio 1: </span>Eternal flame. Great song.
+</figcaption>
+</figure>
+</div>
+</div>
+
+<div id="outline-container-orge3cb77d" class="outline-2">
+<h2 id="orge3cb77d">Video</h2>
+<div class="outline-text-2" id="text-orge3cb77d">
+<p>
+I can also embed videos. Wow! (Though there's not a lot of video about this
+video.)
+</p>
+<figure id="jun">
+<video controls>
+<source src="/res/jun.webm" type="video/webm">
+This browser does not support HTML5 videos.
+</video>
+<figcaption>
+<span class="figure-caption">video 1: </span>Jun by Takuro Yoshida
+</figcaption>
+</figure>
+</div>
+</div>
+
+
+<div id="outline-container-org9083366" class="outline-2">
+<h2 id="org9083366">\(\LaTeX\)</h2>
+<div class="outline-text-2" id="text-org9083366">
+<p>
+This secition tests <a href="https://www.mathjax.org/">Mathjax</a>. \(x + y\), \(\mathcal{C}\)
+\[
+  \sum_{i = 1}^{n} i = \frac{n(n + 1)}{2}.
+  \]
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<hr><p class="author">Author: Anders Dalskov</p><p class="date">Last modified: 2018-11-04 Sun 10:54</p>
+</div>
+</body>
+</html>

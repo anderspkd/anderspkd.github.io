@@ -5,6 +5,15 @@ body {
     max-width: 700px;
 }
 
+pre {
+    font-size: 120%;
+    line-height: 17px;
+}
+
+code {
+    font-size: 120%;
+}
+
 #content {
     padding: 5px;
     line-height: 22px;
@@ -12,6 +21,11 @@ body {
     text-align: justify;
     color: #333333;
 }
+
+#footnotes {
+    font-size: 85%;
+}
+
 
 #preamble {
     text-align: right;
@@ -41,6 +55,7 @@ a:active {
 #postamble {
     max-width: 95%;
     font-size: 70%;
+    color: grey;
 }
 
 hr {

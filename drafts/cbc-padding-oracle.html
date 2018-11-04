@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2018-11-04 Sun 12:49 -->
+<meta charset="utf-8">
+<title>CBC padding oracles</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Anders Dalskov">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="/res/style.css" type="text/css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="/res/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="preamble" class="status">
+<ul><a href="/">Front</a><a href="/blog">Blog</a><a href="/contact.html">Contact</a><a href="/links.html">Links</a></ul><hr>
+</div>
+<div id="content">
+<h1 class="title">CBC padding oracles</h1>
+<div class="PREVIEW">
+<p>
+The CBC padding oracle is one of those security vulnerabilities that anyone with
+an interest for cryptography, and security in general, should understand. While
+being quite old by this point (the issue was first described in 2002), it still
+shows up from time to time.
+</p>
+
+<p>
+It is also simple enough that anyone with a rudimentary grasp of math and
+computer science should be able to understand the issue beyond just how to run
+e.g., <code>padbuster</code>.
+</p>
+
+</div>
+
+<p>
+My focus here will be to provide a nice mathematical description of the CBC
+padding oracle. You can view this post as a short summary of Vaudenay's original
+paper.<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+</p>
+
+<p>
+That being said, if you're more interested in a toy program that lets you play
+around with this vulnerability, then good news! Just skip ahead to Section 3.
+</p>
+
+<p>
+Some familiarity with the notation common in Computer Science is assumed.
+</p>
+
+<div id="outline-container-orga165159" class="outline-2">
+<h2 id="orga165159">1. Block ciphers</h2>
+<div class="outline-text-2" id="text-orga165159">
+<p>
+A necessary starting point for understanding the CBC padding oracle is to
+understand the construction. I.e., what exactly is meant by writing something
+like "AES-CBC-PKCS5".
+</p>
+
+<p>
+Formally, a block cipher is a pair of deterministic algorithms \((E, D)\), where
+\(E\) (the encryption algorithm) takes a key \(k\in\{0,1\}^{\kappa}\), message
+\(m\in\{0,1\}^{\ell_{in}}\) and outputs a ciphertext
+\(c\in\{0,1\}^{\ell_{out}}\). The decryption algorithm \(D\) does the reverse: On
+input a key \(k\), and ciphertext \(c\), it outputs a message \(m\) and we require
+(to the surprise of no one) that \(D_{k}(E_{k}(m))=m\). That is, we can decrypt
+messages we encrypt, provided we use the right key.
+</p>
+
+<p>
+Being able to encrypt only \(\ell_{in}\) bits at a time (e.g., 128 for AES or 64
+for DES) is not very useful, so a block cipher is almost always run in a
+so-called <i>mode of operation</i> in order to allow us to encrypt an arbitrary
+amount of data.
+</p>
+</div>
+
+<div id="outline-container-orge346d0f" class="outline-3">
+<h3 id="orge346d0f">1.1. CBC-mode</h3>
+<div class="outline-text-3" id="text-orge346d0f">
+<p>
+One such mode of operation is Chaining Block Cipher, or CBC for short.
+</p>
+
+<p>
+Let \(M=m_{1}||m_{2}||\dots||m_{n}\) be the message we want to encrypt, and
+assume for now that its length is a multiple of \(\ell_{in}\). To encrypt \(M\)
+with a key \(k\) using \(E\), we select the first ciphertext block at
+random. (This block, \(c_{0}\), is called the <i>initialization vector</i>, and so
+we might also write \(IV\), instead of \(c_{0}\).) The encryption of the \(i\)'th
+message block \(m_{i}\) is then defined recursively as:
+</p>
+
+<p>
+\[
+   c_{i} = E_{k}(m_{i} \oplus c_{i-1}),
+   \]
+</p>
+
+<p>
+for \(i=1,\dots n\). Decrypting a ciphertext \(C=c_{0}||c_{1}||\dots||c_{n}\)
+(remember that \(c_{0}=IV\)) is then just performing the reverse of the above
+process using \(D\):
+</p>
+
+<p>
+\[
+   m_{i} = D_{k}(c_{i}) \oplus c_{i-1}.
+   \]
+</p>
+
+<p>
+(Using the fact that \(D_{k}(E_{k}(m))=m\) you can easily verify that this
+works.)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf3fa403" class="outline-3">
+<h3 id="orgf3fa403">1.2. Padding</h3>
+<div class="outline-text-3" id="text-orgf3fa403">
+<p>
+The last ingredient, if you will, is how to ensure that \(|M|\) is a multiple
+of the block cipher input size \(\ell_{in}\). In other words, how do we pad \(M\)
+so that its size is correct?
+</p>
+
+<p>
+One way to go about this is defined in PKCS #5.<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup> If the last block of
+\(M\) is short \(t\) bytes, then we simply append the byte \(t\), \(t\) times.
+</p>
+
+<p>
+I think the easiest way to illustrate this is with a small piece of Python
+code:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">pad</span>(m):
+    <span style="color: #BA36A5;">t</span> = 16 - <span style="color: #006FE0;">len</span>(m) % 16
+    <span style="color: #0000FF;">return</span> m + <span style="color: #006FE0;">bytes</span>([t] * t)
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; pad(b'Hello, world!')
+b'Hello, world!\x03\x03\x03'
+&gt;&gt;&gt; pad(b'Cryptography is cool!')
+b'Cryptography is cool!\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b'
+</pre>
+
+<p>
+<code>Hello, world!</code> is 13 bytes, so we append 3 copies of the byte
+<code>0x03</code>. <code>Cryptography is cool!</code> is 21 bytes, so we need 11 (<code>0x0b</code> in hex)
+bytes of padding to make the message a multiple of 16.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6ec2420" class="outline-3">
+<h3 id="org6ec2420">1.3. Putting it all together</h3>
+<div class="outline-text-3" id="text-org6ec2420">
+<p>
+Combining a mode of operation with a padding scheme lets us obtain a
+<i>symmetric encryption scheme</i>.
+</p>
+
+<p>
+For our purposes, a symmetric encryption scheme \((Enc, Dec)\) is a pair of
+algorithms, where the encryption algorithm \(Enc\) takes as input a key \(k\),
+initialization vector \(IV\), message \(M\) (of any size) and outputs a
+ciphertext \(C\). Like before, \(Dec\) does the reverse and we still require that
+decryption works, i.e., that \(Dec_{k}(Enc_{k}(IV, M))=M\) holds.
+</p>
+
+<p>
+We can now describe the symmetric encryption scheme "AES-CBC-PKCS5" as the
+tuple of algorithms \((Enc, Dec)\) where the underlying \((E, D)\) is AES, the
+mode of operation is CBC and the padding scheme is PKCS #5. This is the
+setting I'll be using in the next couple of section.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd7fc4a6" class="outline-2">
+<h2 id="orgd7fc4a6">2. Padding oracles</h2>
+<div class="outline-text-2" id="text-orgd7fc4a6">
+<p>
+I left out a small, but important, detail in the previous section, namely how
+to handle invalid padding.
+</p>
+
+<p>
+You might have guessed that we need to perform some sort of "correctness"
+check on the padding, before it can be removed reliably. For one thing, only
+the bytes <code>0x01</code> through <code>0x10</code> and valid padding bytes, and as a second
+thing, if \(t\) was the last byte in \(m_{n}\), then each of the \(t\) last bytes of
+\(m_{n}\) must also have the value \(t\).
+</p>
+
+<p>
+If one or the other does not hold, then we cannot (or rather, \(Dec\) cannot)
+unpad the message without potentially mangling the content, which breaks the
+correctness guarantee we require of the encryption scheme.
+</p>
+
+<p>
+Since the topic of this blog post is padding oracles, lets suppose \(Dec\) in
+this case simply returns an error. You might imagine it simply outputs
+<code>"IncorrectPadding"</code> if the padding was incorrect. In other words, \(Dec\)
+provides an "oracle" that will tell you if \(Dec(C)\) had correct padding or
+not. (And hence the name "padding oracle".)
+</p>
+</div>
+
+<div id="outline-container-org4c2c125" class="outline-3">
+<h3 id="org4c2c125">2.1. The setup</h3>
+<div class="outline-text-3" id="text-org4c2c125">
+<p>
+Suppose we obtained a ciphertext \(C=Enc_{k}(IV,M)\) and that this was
+encrypted by a server that holds \(k\). To make things interesting, lets assume
+that we cannot simply steal \(k\).
+</p>
+
+<p>
+The server accepts a single kind of message: When we send \((\mathsf{decrypt},
+   C)\), it computes \(Dec_{k}(C)\) and returns either <code>"ok"</code> (padding was correct)
+or <code>"IncorrectPadding"</code> (padding was not correct).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org34e32e4" class="outline-3">
+<h3 id="org34e32e4">2.2. Decrypting data</h3>
+<div class="outline-text-3" id="text-org34e32e4">
+</div>
+<div id="outline-container-orgb052659" class="outline-4">
+<h4 id="orgb052659">Recovering <i>one</i> message byte</h4>
+<div class="outline-text-4" id="text-orgb052659">
+<p>
+Lets begin by seeing how this one bit of information (padding ok/not ok) is
+enough to recover a single message byte by sending at most \(2^{8}-1=255\)
+\((\mathsf{decrypt},\cdot)\) messages to the server.
+</p>
+
+<p>
+For the sake of simplicity, lets assume \(M\) is comprised of only a single
+block.<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup> Write this block \(m\) as:
+</p>
+
+<p>
+\[
+    m = b_{1}b_{2}b_{3}b_{4}\dots b_{15}b_{16},
+    \]
+</p>
+
+<p>
+Where each \(b_{j}\) is a byte, and the encryption \(C=IV||c\) of \(M=m\) looks
+like:
+</p>
+
+\begin{align*}
+C  &= IV || c \\
+   &= IV || E_{k}(m \oplus IV).
+\end{align*}
+
+<p>
+Finally, I'll write \(IV=i_{i}i_{2}\dots i_{15}i_{16}\) where each \(i_{j}\) is a
+byte.
+</p>
+
+<p>
+Lets see what happens if we start messing with the initilization vector. To
+that end, lets pick a random byte \(b'\) and define \(IV'\) as
+</p>
+
+<p>
+\[
+    IV' = i_{1}i_{2}\dots i_{15}(i_{16} \oplus b'),
+    \]
+</p>
+
+<p>
+that is, we simply exclusive-or \(b'\) onto the least significant byte of the
+old IV.
+</p>
+
+<p>
+Next lets send \((\mathsf{decrypt}, C')\), where \(C'=IV'||c\), and observe the
+results. The server computes:
+</p>
+
+\begin{align*}
+D_{k}(c) \oplus IV' &= m \oplus IV \oplus IV \\
+    &= (b_{1}\dots b_{15}b_{16}) \oplus (i_{1}\dots i_{15}i_{16}) \oplus (i_{1}\dots i_{15}(i_{16}\oplus b') \\
+    &= b_{1}\dots b_{15}(b_{16}\oplus b'),
+\end{align*}
+
+<p>
+and computes it response based on validity of the padding.
+</p>
+
+<p>
+But hold up. If the padding was valid, then we learn that \(b_{16}\oplus b'\)
+was a valid padding byte. In fact, with good probability<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>, we learn that
+\(b_{16}\oplus b' = \mathtt{0x01}\) and so we can compute:
+</p>
+
+<p>
+\[
+    b_{16} = b' \oplus \mathtt{0x01}.
+    \]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org89c324d" class="outline-4">
+<h4 id="org89c324d">Recovering <i>two</i> message bytes</h4>
+<div class="outline-text-4" id="text-org89c324d">
+<p>
+We can fairly easily extend the technique above to recover the next byte
+\(b_{15}\). Since we now know the value of \(b_{16}\), we can construct the IV
+that allows us to learn the next byte as
+</p>
+
+<p>
+\[
+    IV' = i_{1}i_{2}\dots i_{14}(i_{15}\oplus b')(i_{16}\oplus b_{16}\oplus\mathtt{0x02}).
+    \]
+</p>
+
+<p>
+Upon decryption, the server sees the message
+</p>
+
+<p>
+\[
+    D_{k}(c) \oplus IV' = b_{1}b_{2}\dots b_{14}(b_{15}\oplus b')\mathtt{0x02},
+    \]
+</p>
+
+<p>
+and so will respond with <code>"ok"</code> if \(b_{15}\oplus b'=\mathtt{0x02}\) and
+<code>"IncorrectPadding"</code> otherwise.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbbedcf8" class="outline-4">
+<h4 id="orgbbedcf8">Recovering <i>all</i> the bytes</h4>
+<div class="outline-text-4" id="text-orgbbedcf8">
+<p>
+This is left as an exercise for the reader, but I hope that by now it is
+clear how to recover the third byte, the fourth byte, and so on.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org58b987f" class="outline-3">
+<h3 id="org58b987f">2.3. What more can go wrong?</h3>
+<div class="outline-text-3" id="text-org58b987f">
+<p>
+The padding oracle actually allows us to not only <i>decrypt</i> arbitrary data,
+but also to <i>encrypt</i> arbitrary data.
+</p>
+
+<p>
+Observe that when we know the content of \(m\), then we can also learn the
+exact output of \(D_{k}(c)\) by computing
+</p>
+
+<p>
+\[
+   D_{k}(c) = m \oplus IV.
+   \]
+</p>
+
+<p>
+But if we know \(D_{k}(c)\), then we could define a new ciphertext \(C'\) as
+\(C'=(x\oplus m \oplus IV)||c\) which decrypts to message \(x\), because:
+</p>
+
+\begin{align*}
+D_{k}(c) \oplus IV' &= D_{k}(c) \oplus m \oplus IV \oplus x \\
+   &= m \oplus IV \oplus m \oplus IV \oplus x \\
+   &= x.
+\end{align*}
+
+<p>
+This is only one block. Can we encrypt arbitrary length data? Yes! Because we
+can use the padding oracle to learn \(D_{k}(c)\), and so in particular, we can
+use it to learn \(D_{k}(x\oplus m \oplus IV)\), which allows us to "encrypt"
+another block.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org47ee679" class="outline-2">
+<h2 id="org47ee679">3. Trying it out</h2>
+<div class="outline-text-2" id="text-org47ee679">
+<p>
+I believe in learning by doing, so I wrote a small Python program that exposes
+a CBC padding oracle.
+</p>
+
+<p>
+You can find the program <a href="https://github.com/anderspkd/cbc-padding-oracle-demo">here</a> together with instructions on how to run it.
+</p>
+
+<p>
+I also wrote a small client that implements the padding oracle attack that you
+can look at as a reference. Or you can just use the description above to
+implement your own attack.
+</p>
+
+<figure id="demo">
+<video controls>
+<source src="/res/cbc-padding-oracle-demo.webm" type="video/webm">
+This browser does not support HTML5 videos.
+</video>
+<figcaption>
+<span class="figure-caption">video 1: </span>CBC padding oracle demonstration.
+</figcaption>
+</figure>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+Vaudenay, S. (2002, April). Security Flaws Induced by CBC Padding—Applications to SSL, IPSEC, WTLS&#x2026; In International Conference on the Theory and Applications of Cryptographic Techniques (pp. 534-545). Springer, Berlin, Heidelberg.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+Or PKCS #7, though the difference is not important.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+If \(M=m_{1}||\dots ||m_{n}\), then we just "assume" the message we're attacking is \(M'=m_{n}\). The corresponding ciphertext \(C'\) is then \(c_{n-1}||c_{n}\).
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+There are some unlikely edge cases that gives rise to some "false positives", which I don't deal with here.
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<hr><p class="author">Author: Anders Dalskov</p><p class="date">Last modified: 2018-11-04 Sun 12:49</p>
+</div>
+</body>
+</html>
