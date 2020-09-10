@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-09-04 Fri 11:57 -->
+<!-- 2020-09-10 Thu 10:48 -->
 <meta charset="utf-8">
-<title>Research</title>
+<title>Cats or Crossaints?</title>
 <meta name="generator" content="Org mode">
+<meta name="author" content="Anders Dalskov">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -243,32 +244,165 @@ for the JavaScript code in this tag.
 </div>
 <div id="content">
 <header>
-<h1 class="title">Research</h1>
-</header><p>
-I've done research in a number of different areas related to security, although
-most of what I do concern secure multiparty computation in some way. <a href="https://dblp1.uni-trier.de/pers/hd/d/Dalskov:Anders_P=_K=">dblp</a> also
-gives a list of these publications that may or may not be more up to date than
-this page.
+<h1 class="title">Cats or Crossaints?</h1>
+</header><div class="PREVIEW">
+<p>
+Can popular image prediction APIs help is distinguish pictures of cats, from pictures of crossaints?
+Turns out the answer is yes.
 </p>
 
-<dl class="org-dl">
-<dt>LSS Homomorphisms and Applications to Secure Signatures, Proactive Secret Sharing and Input Certification</dt><dd>In submission | Diego Aranha, Anders Dalskov, Daniel Escudero, Claudio Orlandi | <a href="https://eprint.iacr.org/2020/691">{eprint}</a></dd>
+</div>
 
-<dt>An Efficient Passive-to-Active Compiler for Honest-Majority MPC over Rings</dt><dd>In submission | Mark Abspoel, Anders Dalskov, Daniel Escudero, Ariel Nof | <a href="https://eprint.iacr.org/2019/1298">{eprint}</a></dd>
+<p>
+As the very cool picture below shows, an orange tabby cat can look surprisingly similar to a croissant.
+This naturally raises the question: If a human (such as myself) can be so fooled, what about an image prediction API?
+</p>
 
-<dt>Circuit Amortization Friendly Encodings and their Application to Statistically Secure Multiparty Computation</dt><dd>ASIACRYPT 2020 | Anders Dalskov, Eysa Lee, Eduardo Soria-Vazquez | <a href="https://eprint.iacr.org/2020/1053">{eprint}</a></dd>
+<p>
+(It bears mentioning that I am perfectly capable of figuring out which picture is of a cat, and which is of a croissant.)
+</p>
 
-<dt>Securing DNSSEC Keys via Threshold ECDSA From Generic MPC</dt><dd>ESORICS 2020 | Anders Dalskov, Marcel Keller, Claudio Orlandi, Kris Shrishak, Haya Shulman | <a href="https://eprint.iacr.org/2019/889">{eprint}</a></dd>
+<figure id="cc">
+<img src="/res/catcroissants.jpeg" alt="dummy image"></img>
+<figcaption>
+<span class="figure-caption">Figure 1: </span>Cats or Croissants?
+</figcaption>
+</figure>
 
-<dt>Secure Evaluation of Quantized Neural Networks</dt><dd>PETs 2020 | Anders Dalskov, Daniel Escudero, Marcel Keller | <a href="https://eprint.iacr.org/2019/131">{eprint}</a> <a href="https://arxiv.org/abs/1910.12435">{arxiv}</a> <a href="https://petsymposium.org/2020/files/papers/issue4/popets-2020-0075.pdf">{PDF}</a> <a href="https://www.youtube.com/watch?v=bPW_mZI2nUk&amp;list=PLWSQygNuIsPeBNObt8cV5KOsyomz3-B8_&amp;index=17&amp;t=0s">{video}</a></dd>
+<p>
+To answer the question in question&#x2014;that is, "<i>Can we use an image prediction API to distinguish cats from crossaints</i>"&#x2014;I used the <a href="https://cloud.google.com/vision">Google Vision</a> API.
+I cut up the above image using GIMP and then fed each of the images into box labeled "try the API".
+The table below shows the result of doing so:
+</p>
 
-<dt>Can You Trust Your Encrypted Cloud?: An Assessment of SpiderOakONE's Security</dt><dd>ASIACCS 2018 | Anders Dalskov, Claudio Orlandi | <a href="https://eprint.iacr.org/2017/570">{eprint}</a> <a href="https://www.youtube.com/watch?v=mx04_bH646Y">{RWC 2018}</a> <a href="https://www.version2.dk/blog/kan-man-stole-paa-krypterede-sky-1086788">{news (DK)}</a> <a href="/res/files/spideroak.pdf">{PDF}</a></dd>
+<table>
 
-<dt>End-to-End Encrypted Cloud Storage. A security analysis of SpiderOak ONE</dt><dd>Master thesis, june 2017 | Anders Dalskov | <a href="https://sites.google.com/site/dsfdweb/vindere-af-specialeprisen">{CS thesis award (DK)}</a> <a href="/res/files/master_thesis.pdf">{PDF}</a></dd>
-</dl>
+
+<colgroup>
+<col  class="org-right">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">#</th>
+<th scope="col" class="org-left">True label</th>
+<th scope="col" class="org-left">Predicted label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">Cat</td>
+<td class="org-left">Cat  (99%)</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">Croissant</td>
+<td class="org-left">Croissant (89%)</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">Two cats (very cute)</td>
+<td class="org-left">Cat (87%)</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">Two croissants (very delicious)</td>
+<td class="org-left">Croissant x2 (80%)</td>
+</tr>
+
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">Croissant</td>
+<td class="org-left">Croissant (88%)</td>
+</tr>
+
+<tr>
+<td class="org-right">6</td>
+<td class="org-left">Cat on a mat</td>
+<td class="org-left">Cat (98%)</td>
+</tr>
+
+<tr>
+<td class="org-right">7</td>
+<td class="org-left">(Two?) Croissant(s) on a plate</td>
+<td class="org-left">Croissant (93%)</td>
+</tr>
+
+<tr>
+<td class="org-right">8</td>
+<td class="org-left">Cat with a blue collar</td>
+<td class="org-left">Cat (89%)</td>
+</tr>
+
+<tr>
+<td class="org-right">9</td>
+<td class="org-left">Small cat</td>
+<td class="org-left">Cat (98%)</td>
+</tr>
+
+<tr>
+<td class="org-right">10</td>
+<td class="org-left">Croissant with nuts</td>
+<td class="org-left">Bread (64%)</td>
+</tr>
+
+<tr>
+<td class="org-right">11</td>
+<td class="org-left">Cat</td>
+<td class="org-left">Cat (98%)</td>
+</tr>
+
+<tr>
+<td class="org-right">12</td>
+<td class="org-left">Croissant with powdered sugar</td>
+<td class="org-left">Croissant (94%)</td>
+</tr>
+
+<tr>
+<td class="org-right">13</td>
+<td class="org-left">Croissant</td>
+<td class="org-left">Croissant (92%)</td>
+</tr>
+
+<tr>
+<td class="org-right">14</td>
+<td class="org-left">Cat</td>
+<td class="org-left">Cat (99%)</td>
+</tr>
+
+<tr>
+<td class="org-right">15</td>
+<td class="org-left">Croissant with background croissants</td>
+<td class="org-left">Croissant x2 (92%, 79%)</td>
+</tr>
+
+<tr>
+<td class="org-right">16</td>
+<td class="org-left">Cat</td>
+<td class="org-left">Cat (99%)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Interestingly, the API can indentify multiple objects, and so pictures with more than one croissant gets multiple labels.
+This didn't happen for the picture with two cats (picture # 3). Oh well.
+Finally, the croissant with nuts (picture # 10) was identified as bread. A disucssion on whether or not a croissant with toppings is in fact still a croissant is out of scope for this article though.
+</p>
+
+<p>
+So, in conclusion, if you unsure about whether to comment "cute!" or "delicious!" the next time someone uploads a picture of something orange on their social media, you can ask google for help.
+</p>
 </div>
 <div id="postamble" class="status">
-<hr><p class="license">CC BY-SA</p><p class="date">Last modified: 2020-09-04 Fri 11:57</p>
+<hr><p class="license">CC BY-SA</p><p class="author">Author: Anders Dalskov</p><p class="date">Last modified: 2020-09-10 Thu 10:48</p>
 </div>
 </body>
 </html>
