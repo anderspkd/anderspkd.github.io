@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-09-10 Thu 10:48 -->
+<!-- 2020-09-15 Tue 01:45 -->
 <meta charset="utf-8">
 <title>Cats or Crossaints?</title>
 <meta name="generator" content="Org mode">
@@ -247,7 +247,7 @@ for the JavaScript code in this tag.
 <h1 class="title">Cats or Crossaints?</h1>
 </header><div class="PREVIEW">
 <p>
-Can popular image prediction APIs help is distinguish pictures of cats, from pictures of crossaints?
+Can popular image prediction APIs help us distinguish pictures of cats from pictures of crossaints?
 Turns out the answer is yes.
 </p>
 
@@ -255,11 +255,11 @@ Turns out the answer is yes.
 
 <p>
 As the very cool picture below shows, an orange tabby cat can look surprisingly similar to a croissant.
-This naturally raises the question: If a human (such as myself) can be so fooled, what about an image prediction API?
+This naturally raises the important question: If a human (such as myself) can be so fooled, what about an image prediction API?
 </p>
 
 <p>
-(It bears mentioning that I am perfectly capable of figuring out which picture is of a cat, and which is of a croissant.)
+(I want to point out that I am perfectly capable of figuring out which picture is of a cat, and which is of a croissant.)
 </p>
 
 <figure id="cc">
@@ -271,7 +271,7 @@ This naturally raises the question: If a human (such as myself) can be so fooled
 
 <p>
 To answer the question in question&#x2014;that is, "<i>Can we use an image prediction API to distinguish cats from crossaints</i>"&#x2014;I used the <a href="https://cloud.google.com/vision">Google Vision</a> API.
-I cut up the above image using GIMP and then fed each of the images into box labeled "try the API".
+Each of the images in the above image was cut using GIMP and then fed into the box on the Google Vision API website labelled "try the API".
 The table below shows the result of doing so:
 </p>
 
@@ -392,9 +392,10 @@ The table below shows the result of doing so:
 </table>
 
 <p>
-Interestingly, the API can indentify multiple objects, and so pictures with more than one croissant gets multiple labels.
-This didn't happen for the picture with two cats (picture # 3). Oh well.
-Finally, the croissant with nuts (picture # 10) was identified as bread. A disucssion on whether or not a croissant with toppings is in fact still a croissant is out of scope for this article though.
+Interestingly, the API can indentify multiple objects, which is why pictures with mutliple croissants get multiple labels.
+Perhaps just as interestingly, this didn't apply for pictures with more than one cat. (Perhaps Google discriminates against cats?)
+Note also that the croissant with nuts (picture # 10) was identified as bread
+However, a disucssion on whether or not a croissant with toppings is in fact still a croissant is out of scope for this article though.
 </p>
 
 <p>
@@ -402,7 +403,7 @@ So, in conclusion, if you unsure about whether to comment "cute!" or "delicious!
 </p>
 </div>
 <div id="postamble" class="status">
-<hr><p class="license">CC BY-SA</p><p class="author">Author: Anders Dalskov</p><p class="date">Last modified: 2020-09-10 Thu 10:48</p>
+<hr><p class="license">CC BY-SA</p><p class="author">Author: Anders Dalskov</p><p class="date">Last modified: 2020-09-15 Tue 01:45</p>
 </div>
 </body>
 </html>
