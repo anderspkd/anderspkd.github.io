@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2021-09-15 Wed 23:23 -->
+<meta charset="utf-8">
+<title>På tur i det nordjyske</title>
+<meta name="generator" content="Org mode">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="/res/style.css" type="text/css"/>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<ul><a href="/">Front</a><a href="/posts">Posts</a><a href="/publications.html">Publications</a></ul><hr>
+</div>
+<div id="content">
+<header>
+<h1 class="title">På tur i det nordjyske</h1>
+</header><div class="PREVIEW">
+<p>
+I sommeren 2021 tog min kæreste og jeg på cykeltur rundt omkring i det nordjyske.
+Dette indlæg giver et kort overblik over vores rute, samt de forskellige ting vi så, og steder vi besøgte.
+</p>
+
+</div>
+
+<div id="outline-container-org955d9b9" class="outline-2">
+<h2 id="org955d9b9">Hurtige tur-stats</h2>
+<div class="outline-text-2" id="text-org955d9b9">
+<p>
+Vores tur strakte sig over 13 dage, hvor vores cykel var involveret i 12 af
+dem.  Vi præsterede at tilbagelægge 568km på disse 13 dage, og vores
+gennemsnits distance per dag var derfor sådan ca. 47.3km. Egentligt meget
+fint, taget vores erfaring og udstyr i betragtning.
+</p>
+
+<p>
+Vi er ikke helt sikker på hvor lang tid vi i gennemsnit brugte i sadlen per
+dag, men noget i omegnen af 6 timer passer nok meget fint.
+</p>
+
+<p>
+På 13 dage havde vi 12 overnatninger. Af disse foregik 7 i telt, 3 på hotel og
+2 i campinghytter.
+</p>
+
+<div class="image">
+<figure id="cykler">
+<img src="/res/tur/bikes.jpeg" alt="cykler"></img>
+<figcaption>
+<span class="figure-caption">Vores cykler. Fuldt udstyret. Billedet blev taget umiddelbart før, jeg ødelagde slangen på den ene.</span>
+</figcaption>
+</figure>
+</div>
+
+<p>
+Jeg ved ikke hvor tunge vores cykler var med fuldt læs, men det tog lidt tid
+at blive vandt til den noget anderledes vægtfordeling. Dog var det ikke noget
+der voldte de "helt" store problemer.
+</p>
+
+<figure id="oops">
+<img src="/res/tur/oops.jpeg" alt="ups"></img>
+<figcaption>
+<span class="figure-caption">Cyklen var dog lidt bagtung, hvilket nogle gange resulterede i spændende resultater.</span>
+</figcaption>
+</figure>
+</div>
+</div>
+
+<div id="outline-container-org5b3175a" class="outline-2">
+<h2 id="org5b3175a">Fra Aarhus til Aalborg</h2>
+<div class="outline-text-2" id="text-org5b3175a">
+<p>
+De første 4 dage gik med at cykle fra Aarhus til Aalborg. Dette skete via
+Udbyhøj, Hadsund og Lille Vildmose. Ruten var som sådan ikke noget vi havde
+planlagt til punkt og prikke. Det meste af tiden brugte vi skilte (specielt de
+skilte, som viste de nationale cykelruter) eller OsmAnd.
+</p>
+
+<figure id="p1">
+<img src="/res/tur/aaa.png" alt="route"></img>
+<figcaption>
+<span class="figure-caption">Rute de første 4 dage. Følges pilene: Aarhus til Uggelhuse, Uggelhuse til Udbyhøj, Udbyhøj til Lille Vildmose, og Lille Vildmose til Aalborg.</span>
+</figcaption>
+</figure>
+</div>
+
+<div id="outline-container-org736101d" class="outline-3">
+<h3 id="org736101d">Dag 1</h3>
+<div class="outline-text-3" id="text-org736101d">
+<p>
+Vi skulle egentlig have været af sted om lørdagen (og således have været på
+tur i 14 dage, i stedet for 13), men diverse ting og sager kom i vejen.  Om
+søndagen lagde vi (eller rettere, jeg) ud med at ødelægge ventilen på
+Liyan's cykel. At få skiftet slangen var dog ikke noget problem, da vi havde
+sørget for at købe ekstra (eller, mere præcist, jeg havde nogle ekstra
+slanger liggende som jeg havde købt for et par år siden).
+</p>
+
+<p>
+De mekaniske problemer fikset, drog vi så af sted på vores første del af
+rejsen, som skulle gå fra Aarhus til en lille by ved Randers fjord ved navn
+<a href="https://da.wikipedia.org/wiki/Uggelhuse">Uggelhuse</a>. Vi havde valgt stedet fordi det (1) lå ca. 50km væk, som var den
+afstand vi havde regnet med, at vi kunne cykle på én dag; og (2) fordi byen
+har et shelter.
+</p>
+
+<p>
+Vi havde planlagt vores rute således at vi ville passerer forbi <a href="https://da.wikipedia.org/wiki/Rosenholm_Slot">Rosenholm
+slot</a>, og måske Gammel Estrup, hvis der var til (hvilket der ikke var den
+dag).
+</p>
+
+<figure id="rosenholm">
+<img src="/res/tur/rosenholm.jpeg" alt="rosenholm"></img>
+<figcaption>
+<span class="figure-caption">Rosenholm slot.</span>
+</figcaption>
+</figure>
+
+<p>
+Eftersigende skulle det være muligt, at få en rundvisning på slottet. Dog kom
+vi desværre for sent der hen. Sådan kan det gå. Øbøv.
+</p>
+
+<p>
+Fra Rosenholm, cyklede vi så videre til Randers, sådan cirka, da
+endestationen trods alt var Uggelhuse.
+</p>
+
+<figure id="cat">
+<img src="/res/tur/cat.jpeg" alt="cat"></img>
+<figcaption>
+<span class="figure-caption">Det flotte danske landskab.</span>
+</figcaption>
+</figure>
+
+<p>
+Da vi ankom til Uggelhuse trak det op til regn, og det viste sig, at der ikke
+var noget supermarked i byen, og at vi derfor blev nødt til at slå et smut
+forbi <a href="https://da.wikipedia.org/wiki/Assentoft">Assentoft</a> (en by der åbenbart levere kornsiloer til halvdelen af
+Jylland) for at handle ind. Det skulle vise sig, at være en velsignelse, da
+det begyndte at regne umiddelbart før vi gik ind for at handle, og det
+stoppede umiddelbart før vi var færdige.
+</p>
+
+<p>
+Resten af dagen var vejret rigtigt flot.
+</p>
+
+<figure id="uggelhuse">
+<img src="/res/tur/shelter_uggelhuse.jpeg" alt="shelter"></img>
+<figcaption>
+<span class="figure-caption">Vores telt ved Uggelhuse's shelterplads.</span>
+</figcaption>
+</figure>
+</div>
+</div>
+
+<div id="outline-container-org90a4519" class="outline-3">
+<h3 id="org90a4519">Gammel Estrup</h3>
+<div class="outline-text-3" id="text-org90a4519">
+<p>
+Anden dag på turen startede ud med mere flot vejr, og næste stop skulle være
+<a href="https://da.wikipedia.org/wiki/Gammel_Estrup">Gammel Estrup</a>.
+</p>
+
+<figure id="uggelhuse_morgen">
+<img src="/res/tur/randers_fjord.jpeg" alt="uggelhuse"></img>
+<figcaption>
+<span class="figure-caption">Randers fjord. Ikke dårligt.</span>
+</figcaption>
+</figure>
+
+<p>
+Meget af vores tur blev planlagt via. enten Google maps eller OsmAnd. Nogen
+gange ledte det os ud på nogle spændende veje, som for eksempel fra Grund (en
+lille by) til Gammel Estrup. Både Google Maps og OSM viser, at der er en vej
+mellem Grund og Gammel Estrup. Hvad de ikke viser, er dog at denne "vej" er
+en privat grusvej. No worries&#x2014;det var stadig muligt at komme til Gammel
+Estrup, og en grusvej er dog stadig bedre, end en stor landevej uden
+cykelsti, hvilket var det eneste andet alternativ (så vidt vi kunne se).
+</p>
+
+<figure id="ge">
+<img src="/res/tur/gammel_estrup.jpeg" alt="estrup"></img>
+<figcaption>
+<span class="figure-caption">Gammel Estrup.</span>
+</figcaption>
+</figure>
+
+<figure id="ge">
+<img src="/res/tur/gammel_estrup1.jpeg" alt="estrup"></img>
+<figcaption>
+<span class="figure-caption">Voldgraven rundt om Gammel Estrup.</span>
+</figcaption>
+</figure>
+
+<p>
+I modsætningen til Rosenholm, så var det muligt for os at komme indenfor på
+Gammel Estrup. Slottet havde en tema-udstilling om et bryllup der fandt sted
+i starten af 1900-tallet. Det var ret spændende, at høre om hvordan en sådan
+begivenhed fandt sted.
+</p>
+
+<figure id="ge">
+<img src="/res/tur/gammel_estrup2.jpeg" alt="estrup"></img>
+<figcaption>
+<span class="figure-caption">Billed fra Gammel Estrup's biblotek.</span>
+</figcaption>
+</figure>
+
+<p>
+Efter frokost (og klassisk dansk bradepandekage fra Gammel Estrup's køkken)
+gik turen vidre. Turen fra Gammel Estrup skulle dog vise sig at være omtrent
+lige så interessant, som turen ind.  Vi havde ikke rigtigt lyst til at tage
+hele vejen tilbage til Grund (da vi i så fald skulle tilbage via. samme
+bumlede grusvej), og besluttede os derfor i stedet at tage en vandrerute
+ud. Denne rute var ikke mindre træls, men dog anderledes, så det gjorde ikke
+så meget.
+</p>
+
+<figure id="vandre">
+<img src="/res/tur/gammel_estrup3.jpeg" alt="vandre rute"></img>
+<figcaption>
+<span class="figure-caption">Ud over at gå over græsmarker, så gik turen også gennem en lille skov. Rigtig flot, dog ikke så nem med en cykel.</span>
+</figcaption>
+</figure>
+
+<p>
+Vores plan var egentlig, at vi ville nå helt til Hadsund. Vi blev dog enige
+om at Udbyhøj var et mere realistisk mål for dag 2.
+</p>
+
+<p>
+Sidst på eftermiddagen, og efter en (meget) kort tur med en kabelfærge,
+befandt vi os i Udbyhøj Havneby. Vi havde valget mellem en shelterplads lidt
+væk fra byen, eller en campingplads. Shelterpladsen var som sådan fin, men
+der var en millard insekter, så vi endte på campingplads i stedet.
+</p>
+
+<figure id="kabel">
+<img src="/res/tur/kabel.jpeg" alt="kabel færger"></img>
+<figcaption>
+<span class="figure-caption">Udbyhøj kabelfærge. Sejler efter behøv, og koster kun en tyver per næse.</span>
+</figcaption>
+</figure>
+</div>
+</div>
+
+<div id="outline-container-org72e6a2a" class="outline-3">
+<h3 id="org72e6a2a">Lille Vildmose</h3>
+<div class="outline-text-3" id="text-org72e6a2a">
+<p>
+Næste dag gik turen så stille og roligt op til Hadsund, og så videre op til
+<a href="https://da.wikipedia.org/wiki/Lille_Vildmose">Lille Vildmose</a>.
+</p>
+
+<figure id="vildmose">
+<img src="/res/tur/vildmose.jpeg" alt="vildmose"></img>
+<figcaption>
+<span class="figure-caption">Færist ved indgangen til lille vildmose---man skulle jo nødigt have, at elgene render deres vej.</span>
+</figcaption>
+</figure>
+
+<p>
+Den omkringliggende natur er vildt flot, og helt klart et sted man kan bruge meget tid.
+</p>
+
+<figure id="vildmose1">
+<img src="/res/tur/vildmose1.jpeg" alt="vildmose"></img>
+<figcaption>
+<span class="figure-caption">Vældig flot sø.</span>
+</figcaption>
+</figure>
+
+<p>
+Tidligt på aftenen ankom vi til det besøgscenter, der ligger i Lille
+Vildmose.  Her ligger et lille "museum", samt en større udendørs park, med
+udkikstårne og fortællinger om de forskellige dyr man kan se.  Vi var så
+heldige, at lige <i>den</i> dag vi ankom, havde centeret åbent indtil syv.  Prisen
+for at komme ind, var dog lidt stejl (specielt når vi begge var ret trætte på
+tidspunktet hvor vi ankom).
+</p>
+
+<p>
+Da vi blev trætte af at kigge på (udstoppede) elge og vildsvin, cyklede vi
+fem minutter til det shelter som ligger ved siden af centeret. Brug af dette
+shelter viste sig at koste yderliggere 20kr per person.
+</p>
+
+<figure id="aftensmad">
+<img src="/res/tur/vildmose_mad.jpeg" alt="mad"></img>
+<figcaption>
+<span class="figure-caption">Dagens aftensmad: Ærteskud og noget risret.</span>
+</figcaption>
+</figure>
+</div>
+</div>
+
+<div id="outline-container-org53df111" class="outline-3">
+<h3 id="org53df111">Aalborg og en hviledag</h3>
+<div class="outline-text-3" id="text-org53df111">
+<p>
+Sidste dag på første del af turen cyklede vi små 40km fra Lille Vildmose til
+Aalborg, hvor vi havde bestilt to overnatninger på et hotel.
+</p>
+
+<p>
+Vi ankom om eftermiddagen, dog lidt for tidligt til at kunne checke ind på
+vores hotel. Hotellet lå nede ved vandet, og tæt på centrum, så dette var
+også fint nok, for så kunne vi jo bare gå os en lille tur mens vi ventede.
+</p>
+
+<p>
+Efter check ind, fik vi os noget junk food, og så var det ellers bare tidligt
+i seng.
+</p>
+
+<p>
+Næste dag var vi tidligt op, og startede dagen med at gå ned forbi <a href="https://da.wikipedia.org/wiki/Utzon_Center">Utzon
+Centeret</a> (den sidste bygning Jørn Utzon designede før hans død i 2008). Selve
+centeret er vistnok et museum, men vi besøgte det ikke. Senere på dagen
+besøgte vi dog deres souvenir shop.
+</p>
+
+<figure id="utzon">
+<img src="/res/tur/utzon_center.jpeg" alt="utzon"></img>
+<figcaption>
+<span class="figure-caption">Utzon centeret i Aalborg</span>
+</figcaption>
+</figure>
+
+<p>
+Første stop var Aalborg's museum for moderne kunst, kaldet <a href="https://da.wikipedia.org/wiki/Kunsten_Museum_of_Modern_Art_Aalborg">"Kunsten"</a>. Dette
+museum havde en lækker blanding af malerier, skulpturer og design. Specielt
+kunne jeg godt lide en fin udstoppet ræv, som de havde.
+</p>
+
+<figure id="fox">
+<img src="/res/tur/fox.jpeg" alt="fox"></img>
+<figcaption>
+<span class="figure-caption">Sikke en ræv!</span>
+</figcaption>
+</figure>
+
+<p>
+Efter Kunsten skulle vi have noget (sen) frokost, og i den anledning
+besluttede vi os for at tage på Aalborg streetfood. Udvalget var ikke på helt
+samme niveau som Aarhus streetfood, men det var dog stadig muligt at få en
+lækker <a href="https://da.wikipedia.org/wiki/Dosa">Dosa</a>.
+</p>
+
+<p>
+Efter frokosten, bevægede vi os ligeså langsomt tilbage mod hotellet, hvor vi
+havde planlagt at hvile vores fødder lidt, før vi gik ud igen. På vejen
+tilbage gik vi forbi de gamle spiritus fabrikker, som ikke er i brug længere,
+men som stadig ser vældigt flotte ud udefra.
+</p>
+
+<figure id="aalborg">
+<img src="/res/tur/sprit.jpeg" alt="sprit"></img>
+<figcaption>
+<span class="figure-caption">Rød Aalborg.</span>
+</figcaption>
+</figure>
+
+<p>
+Til aftensmad fik vi noget italiensk, og til at slutte dagen af med fik vi os
+en fin gåtur langs havnen.
+</p>
+
+<figure id="havn">
+<img src="/res/tur/sund.jpeg" alt="Aalborg sund."></img>
+<figcaption>
+<span class="figure-caption">Aalborg sund.</span>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0586321" class="outline-2">
+<h2 id="org0586321">Fra Aalborg til Skagen</h2>
+<div class="outline-text-2" id="text-org0586321">
+<p>
+Over de næste par dage, var planen at vi ville cykle ud langs Limfjorden, op
+langs østkysten for så til sidst at ende så langt nord på, som man kan komme i
+Danmark: Skagen.
+</p>
+
+<p>
+Vi ville starte med at cykle fra Aalborg til Asaa, så fra Asaa til
+Fredrikshavn (hvilket vi dog ikke helt nåede på grund af vejret) og så fra
+Fredrikshavn til Skagen.
+</p>
+
+<figure id="p2">
+<img src="/res/tur/bbb.png" alt="router"></img>
+<figcaption>
+<span class="figure-caption">Andet afsnit af vores tur.</span>
+</figcaption>
+</figure>
+</div>
+
+<div id="outline-container-org344ba76" class="outline-3">
+<h3 id="org344ba76">Detour og en kendis</h3>
+<div class="outline-text-3" id="text-org344ba76">
+<p>
+Første stop på næste del af turen, skulle være ved bakkerne nord for Aalborg
+hvor der findes et vældigt fint vikingemusem ved Lindholm Høje.
+</p>
+
+<figure id="viking1">
+<img src="/res/tur/lindholm1.jpeg" alt="diverse ting og sager"></img>
+<figcaption>
+<span class="figure-caption">Krukker, redskaber og andre ting og sager som er blevet fundet omkring Aalborg.</span>
+</figcaption>
+</figure>
+
+<p>
+<a href="https://da.wikipedia.org/wiki/Lindholm_H%C3%B8je">Lindholm Høje</a> har i vikingetiden været beboet i to omgange, og begge gange
+blevet forladt efter at flyvesand har gjort det for besværligt, at holde
+jorden dyrkbar.
+</p>
+
+<p>
+På toppen af højen fandt man for godt 100 år siden, at der lå en hel by samt
+et meget stort antal gravpladser. Flyvesandet havde gennem årene dannet et
+lag på godt 1,5 meter(!) oven på gravpladserne, så det må have været noget af
+et arbejde, at få dem gravet fri.
+</p>
+
+<figure id="viking2">
+<img src="/res/tur/lindholm2.jpeg" alt="gravpladser"></img>
+<figcaption>
+<span class="figure-caption">Gravpladser ved Lindholm Høje med udsigt ud over Aalborg.</span>
+</figcaption>
+</figure>
+
+<p>
+Fra Lindholm Høje, cyklede vi ned til fjorden og så der fra og ud mod øst
+kysten (i stiv modvind, hvilket var lidt træls).
+</p>
+
+<p>
+Ved kysten kunne vi så begynde at bevæge os nordpå, hvor vi havde planlagt at
+stoppe ved Asaa, da der her findes et shelter helt nede ved vandet. Derudover
+var der også et supermarked i selve Asaa by, hvor vi kunne købe vand, mad,
+samt sprit til vores camping komfur, uden at skulle transporterer alle disse
+varer alt for langt.
+</p>
+
+<figure id="asaa1">
+<img src="/res/tur/asaa.jpeg" alt="Asaa"></img>
+<figcaption>
+<span class="figure-caption">Telt ved Asaa lystbådhavn. Vinden gjorde stedet til en attraktiv destination for windsurfere, som kan ses i baggrunden.</span>
+</figcaption>
+</figure>
+
+<p>
+Asaa har været i <a href="https://www.dr.dk/nyheder/indland/havfrue-drama-traekker-folk-til-nordjysk-havn-forleden-dag-holdt-der-en-turistbus">medierne</a> for nylig, så det var ret sjovt at se årsagen til
+alt postyret i virkeligheden. Om Asaa's "Mod Hjemve" ligner den lille havfrue
+eller ej, skal jeg dog ikke kunne sige, da jeg aldrig har set den lille
+havfrue i virkeligheden. Statuen i Asaa er dog vældig fin.
+</p>
+
+<figure id="asaa2">
+<img src="/res/tur/asaa1.jpeg" alt="Asaa"></img>
+<figcaption>
+<span class="figure-caption">Mod Hjemve, som statuen hedder.</span>
+</figcaption>
+</figure>
+</div>
+</div>
+
+<div id="outline-container-orgbb9afe5" class="outline-3">
+<h3 id="orgbb9afe5">Regn</h3>
+<div class="outline-text-3" id="text-orgbb9afe5">
+<p>
+Fra Asaa ville vi så tage videre nordpå, med endestation i Frederikshavn
+(eller deromkring). Først skulle vi dog lidt ind i landet og forbi en meget
+interessant herrergård kaldet <a href="https://da.wikipedia.org/wiki/Voergaard_Slot">Voergaard Slot</a>.
+</p>
+
+<figure id="voergaard">
+<img src="/res/tur/voer.jpeg" alt="Voergaard"></img>
+<figcaption>
+<span class="figure-caption">Voergaard Slot</span>
+</figcaption>
+</figure>
+
+<p>
+Slottet høre nu under en fond der blev stiftet af dens sidste ejermand, som
+var greve, tidligere ejer af adskillige vingårde i Frankrig, ridder af
+Malteserorden og arving (via ægteskab) til Jules-Émile Péan's formue. (Péan
+opfandt en kirurgisk dims der stadig anvendes i dag.)
+</p>
+
+<p>
+Slottet indeholder ud over en fantastisk historie, også kunstværker fra nogle
+af historiens helt store kunstnere (såsom Goya og Rubens), møbler fra
+Versaills, diverse stel som tidligere var ejet af Napoleon 1. og mange andre
+spændende ting og sager.
+</p>
+
+<p>
+Man må desværre ikke tage billeder inde på slottet. Ifølge vores guide, så
+skyldes denne regel, at de nogle år tilbage fik stjålet nogle meget
+værdifulde malerier. Forbuddet mod fotografi blev etableret for at gøre det
+vanskeligere, at gennemskue det indendørs layout. (Defense In Depth, om man
+vil.)
+</p>
+
+<p>
+Fra Voergaard cyklede vi tilbage mod kysten igen. Det så dog ud til at trække
+op til regn.
+</p>
+
+<figure id="regn">
+<img src="/res/tur/regn.jpeg" alt="regn"></img>
+<figcaption>
+<span class="figure-caption">Fantastiske skyer. Dog ikke det bedste syn, når man er ude på cykel.</span>
+</figcaption>
+</figure>
+
+<p>
+Vi blev i den grad også fanget i regnen umiddelbart nord for Sæby, og søgte
+tilflugt under en bro, mens vi diskuterede, om vi skulle fortsætte til den
+campingplads ved Frederikshavn, som vi havde udset os, eller om vi skulle
+cykle lidt tilbage til en anden campingplads vi lige havde passeret.
+</p>
+
+<p>
+Vi valgte at cykle tilbage til Sæby. Her fik vi en super fin hytte, til
+næsten ingen penge (og vi skulle derfor ikke tænke over, at sætte telt op i
+regnen).
+</p>
+
+<figure id="hytte">
+<img src="/res/tur/hytte.jpeg" alt="Hytte"></img>
+<figcaption>
+<span class="figure-caption">Hyggelig hytte.</span>
+</figcaption>
+</figure>
+</div>
+</div>
+
+<div id="outline-container-org54d5c5f" class="outline-3">
+<h3 id="org54d5c5f">Palmer og lyng</h3>
+<div class="outline-text-3" id="text-org54d5c5f">
+<p>
+Da vi vågnede var regnen væk, vi (og vores cykler) var tørrer. Næste stop:
+Frederikshavn, palmer og softice!
+</p>
+
+<figure id="palmer">
+<img src="/res/tur/palmer.jpeg" alt="Palmer"></img>
+<figcaption>
+<span class="figure-caption">Hvem har brug for syden, når man kan tage på palmestrand i Nordjylland.</span>
+</figcaption>
+</figure>
+
+<figure id="is">
+<img src="/res/tur/is.jpeg" alt="Is"></img>
+<figcaption>
+<span class="figure-caption">Lækkert!</span>
+</figcaption>
+</figure>
+
+<p>
+Ud over palmestrand var vi også et smut gennem Frederikshavn
+city-center. Frederikshavn har en masse digte gemt i bybilledet, som var
+sjove, at gå og finde.
+</p>
+
+<figure id="digt">
+<img src="/res/tur/digt.png" alt="Fint digt"></img>
+<figcaption>
+<span class="figure-caption">Et rigtigt fint digt af Halfdan Rasmussen.</span>
+</figcaption>
+</figure>
+
+
+<p>
+Efter gåturen, palmer og is, cyklede vi videre mod Skagen.
+</p>
+
+<p>
+Undervejs stoppede vi kort uden for <a href="https://da.wikipedia.org/wiki/R%C3%A5bjerg_Mile">Råbjerg mile</a> for at se lidt på klitter.
+</p>
+
+<figure id="mile">
+<img src="/res/tur/mile.jpeg" alt="Råbjerg mile"></img>
+<figcaption>
+<span class="figure-caption">Flotte klitter ved Råbjerg mile.</span>
+</figcaption>
+</figure>
+
+<p>
+Jo længere mod nord vi kom, destomere lignede landskabet Fanø. Specielt den
+sidste strækning lige før Skagen, hvor vi var inde forbi Den Tilsandede
+Kirke, ligenede til forveksling naturen på vestkysten.
+</p>
+
+<figure id="lyng">
+<img src="/res/tur/lyng.jpg" alt="Masser af lyng"></img>
+<figcaption>
+<span class="figure-caption">Masser af lyng.</span>
+</figcaption>
+</figure>
+
+<figure id="kirke">
+<img src="/res/tur/sand.jpg" alt="Den tilsandede kirke"></img>
+<figcaption>
+<span class="figure-caption">Den tilsandede kirke, som blev taget ud af brug pga. for meget sand.</span>
+</figcaption>
+</figure>
+
+<p>
+Til sidst ankom vi på den campingplads, hvor vi skulle ligge i telt de næste
+to dage.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge317853" class="outline-3">
+<h3 id="orge317853">Grenen</h3>
+<div class="outline-text-3" id="text-orge317853">
+<p>
+Vi skulle naturligvis en tur ud til Grenen. Der er trods alt noget specielt
+i, at kunne sige, at man har cyklet så langt nord på, som det er muligt i
+Danmark.
+</p>
+
+<figure id="gren1">
+<img src="/res/tur/gren.jpeg" alt="På vej ud mod Grenen"></img>
+<figcaption>
+<span class="figure-caption">På vej ud mod Grenen.</span>
+</figcaption>
+</figure>
+
+<p>
+Vi ankommer, parkere vores cykler, og begynder så at gå derud af. Det skulle
+vise sig, at være lidt af en gå tur for at komme helt ud til Grenen.
+</p>
+
+<figure id="gren">
+<img src="/res/tur/grenen.jpeg" alt="Grenen"></img>
+<figcaption>
+<span class="figure-caption">Sikke en masse turister.</span>
+</figcaption>
+</figure>
+
+<p>
+Men derud kom vi i sidste ende. Og sikke en masse turister der var der
+ude. Man må indrømme, at stedet ser lidt anderledes ud i virkeligheden, end
+på de postkort og idylliske billeder man normalt ser fra Skagen.
+</p>
+
+<p>
+Efter Grenen ville vi på museum. Det ville være en skam, at cykle hele vejen
+fra Aarhus til Skagen, uden at se nogle Skagensmalerier.
+</p>
+
+<p>
+På vej til museet trak det op til en ordentlig omgang regn, hvilket ikke var
+så heldigt da vi havde en omgang tøj hængende uden for vores telt. Vi
+besluttede os derfor, at jeg skulle prøve at cykle tilbage til teltet og
+flytte tøjet indenfor, inden regnen kom. Det nåede jeg ikke. Jeg nåede til
+gængæld at blive godt og grundigt våd.
+</p>
+
+<p>
+Museet var indendørs, og vejret var varmt, så det gjorde ikke så meget i
+sidste ende.
+</p>
+
+<figure id="maler1">
+<img src="/res/tur/maler1.jpeg" alt="Museum"></img>
+<figcaption>
+<span class="figure-caption">Replika af Brøndums hotel spisestue.</span>
+</figcaption>
+</figure>
+
+<figure id="maler2">
+<img src="/res/tur/maler2.jpeg" alt="Museum"></img>
+<figcaption>
+<span class="figure-caption">Museum fra oven.</span>
+</figcaption>
+</figure>
+
+<p>
+Om aftenen tog regnen til, og madlavningen krævede derfor lidt snilde. Det
+blev dog muligt at få noget varm mad, uden at der kom alt for meget regn i
+det.
+</p>
+
+<figure id="mad">
+<img src="/res/tur/mad.jpg" alt="Aftensmad"></img>
+<figcaption>
+<span class="figure-caption">Aftensmad i regnvejr.</span>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org237db56" class="outline-2">
+<h2 id="org237db56">Fra Skagen til verdens største sandslot, også hjem igen</h2>
+<div class="outline-text-2" id="text-org237db56">
+<p>
+Sidste del af vores tur endte med at slå smut forbi Hirtshals, Løkken for så
+at ende ved Blokhus. Fra Blokhus cyklede vi tilbage til Aalborg hvor vi tog
+toget hjem til Aarhus igen.
+</p>
+
+<figure id="p3">
+<img src="/res/tur/ccc.png" alt="Sidste del af rejse"></img>
+<figcaption>
+<span class="figure-caption">Sidste del af vores rejse. Fra Skagen til Hirtshals, Hirtshals til Lønstrup, Lønstrup til Blokhus, også Blokhus, Aalborg og Aarhus.</span>
+</figcaption>
+</figure>
+</div>
+
+<div id="outline-container-org4a9f7b9" class="outline-3">
+<h3 id="org4a9f7b9">Fisk!</h3>
+<div class="outline-text-3" id="text-org4a9f7b9">
+<p>
+Vi cyklede fra Skagen tidligt om morgenen. Det havde regnet stødt det meste
+af natten, men om morgenen var det heldigvis (mere eller mindre) tørt, og vi
+kunne derfor cykle af sted med et (næsten) tørt telt og (næsten) tørt tøj.
+</p>
+
+<p>
+En af fordelene ved at cykle, er at man bliver blæst godt igennem. Man kan
+derfor fastspænde tøj osv. på cyklen, og på den måde få det tørret.
+</p>
+
+<figure id="dry">
+<img src="/res/tur/dry.jpeg" alt="Tørrestativer"></img>
+<figcaption>
+<span class="figure-caption">Rullende tørrestativer.</span>
+</figcaption>
+</figure>
+
+<p>
+Vejret blev da også bedre senere på dagen.
+</p>
+
+<figure id="forest">
+<img src="/res/tur/skov.jpg" alt="Skov"></img>
+<figcaption>
+<span class="figure-caption">Masser af skov.</span>
+</figcaption>
+</figure>
+
+<p>
+I Hirtshals skulle vi bo på hotel, og det viste sig at ligge lige på den
+anden side af gaden fra det store Oceanarium som Hirtshals (blandt andet) er
+kendt for. Det var godt, for Oceanariet var den primærer årsag til, at vi var
+forbi Hirtshals.
+</p>
+
+<figure id="hotel">
+<img src="/res/tur/hotel.jpeg" alt="Hotelværelse"></img>
+<figcaption>
+<span class="figure-caption">Vores hotelværelse. Vildt luxus, efter at have sovet i telt (i regnvejr) de sidste par dage.</span>
+</figcaption>
+</figure>
+
+<p>
+<a href="https://da.wikipedia.org/wiki/Nords%C3%B8en_Oceanarium">Nordsøen Oceanariumet</a> husere nordeuropas største akvarie, som rummer hele 4,5
+millioner liter vand. Derudover så havde de også en kæmpe <a href="https://da.wikipedia.org/wiki/Klumpfisk">klumpfisk</a>, som dog
+døde for ikke så lang tid siden.
+</p>
+
+<figure id="tank">
+<img src="/res/tur/tank.jpeg" alt="Masser af fisk"></img>
+<figcaption>
+<span class="figure-caption">4,5 millioner liter vand, nogle fisk og en dykker.</span>
+</figcaption>
+</figure>
+
+<figure id="whale">
+<img src="/res/tur/whale.jpeg" alt="Whale"></img>
+<figcaption>
+<span class="figure-caption">Liyan og jeg der leger Pinocchio</span>
+</figcaption>
+</figure>
+</div>
+</div>
+
+<div id="outline-container-org1e5cb8d" class="outline-3">
+<h3 id="org1e5cb8d">Rubjerg Knude fyr</h3>
+<div class="outline-text-3" id="text-org1e5cb8d">
+<p>
+Fra Hirtshals bevægede vi os videre sydpå. Det skulle vise sig, at vi på den
+måde ville bevæger os ind i en kæmpe labyrant af små krogede veje og endeløse
+mængder af sommerhuse.
+</p>
+
+<p>
+Vi endte dagens rejse med en tur ved Rubjerg Knude fyr, som vi fik at se i
+den skønneste aftensol.
+</p>
+
+<figure id="fyr1">
+<img src="/res/tur/fyr1.jpg" alt="Rubjerg Knude fyr"></img>
+<figcaption>
+<span class="figure-caption">Fyret, i alt dets pragt.</span>
+</figcaption>
+</figure>
+
+<p>
+Ud over det smukke fyr, gav vejret også anledning til en smuk udsigt langs
+kysten. Vi kunne lige præcis se fyret ved Hirtshals når vi kiggede mod nord,
+og bunden af Jammerbugten når vi kiggede mod syd.
+</p>
+
+<figure id="fyr2">
+<img src="/res/tur/fyr2.jpg" alt="Mod nord"></img>
+<figcaption>
+<span class="figure-caption">Udsigt mod nord.</span>
+</figcaption>
+</figure>
+
+<figure id="fyr3">
+<img src="/res/tur/fyr3.jpg" alt="Mod syd"></img>
+<figcaption>
+<span class="figure-caption">Udsigt mod syd.</span>
+</figcaption>
+</figure>
+
+<p>
+Vi afsluttede dagen på en campingplads i Lønstrup.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org975b318" class="outline-3">
+<h3 id="org975b318">Papir og sand</h3>
+<div class="outline-text-3" id="text-org975b318">
+<p>
+Fra Lønstrup cyklede vi videre til Løkken, hvor et kæmpeloppemarked var godt
+igang. På trods af, at vi brugte en del tid her, købte vi dog ikke de helt
+store sager med hjem.
+</p>
+
+<figure id="fle">
+<img src="/res/tur/flee.jpeg" alt="Loppemarked"></img>
+<figcaption>
+<span class="figure-caption">Loppemarked i Løkken.</span>
+</figcaption>
+</figure>
+
+<p>
+Ved Slettingen, lidt uden for Løkken, kom vi forbi en "Drive-in udstilling",
+der blandt andet fortalte om løvfrø, eller Kartoffeltrold, som er en sjælden
+slags frø der findes i den danske natur.
+</p>
+
+<figure id="exh">
+<img src="/res/tur/exh.jpeg" alt="udstilling"></img>
+<figcaption>
+<span class="figure-caption">Drive-in udstilling om frøer og fugle.</span>
+</figcaption>
+</figure>
+
+<p>
+Hen på eftermiddagen ankom vi til Blokhus, som både havde et papir museum og
+en skulpturpark med (angiveligt) verdens største sandslot på hele 21 meter!
+Begge var dog lukket, da vi ankom, så vi måtte vente til næste dag.
+</p>
+
+<p>
+Vores sidste aften på turen brugte vi en fin lille hytte på en campingplads.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf345459" class="outline-3">
+<h3 id="orgf345459">Hjem igen</h3>
+<div class="outline-text-3" id="text-orgf345459">
+<p>
+Vi pakkede vores ting, gjorde rent, og cyklede så ned til skulpturparken for
+at se på sandslotte.
+</p>
+
+<p>
+Temaet for skulpturparken var bibelske temae, udført i form af sandslotte, og
+resultaterne var ret så imponerende.
+</p>
+
+<figure id="sand">
+<img src="/res/tur/sand1.jpeg" alt="Arken i sand"></img>
+<figcaption>
+<span class="figure-caption">Noas ark, lavet i sand.</span>
+</figcaption>
+</figure>
+
+<p>
+Derudover indeholdt parken også en stort antal skulpturer i andet materiale.
+</p>
+
+<figure id="andersen">
+<img src="/res/tur/andersen.jpeg" alt="H. C. Andersen"></img>
+<figcaption>
+<span class="figure-caption">H.C. Andersen.</span>
+</figcaption>
+</figure>
+
+<p>
+Efter en tur på skulptur museum, tog vi på papir museum. Dette museum var
+forholdsvis lille, men indeholdt stadig rigtigt mange interessante papir
+artefakter.
+</p>
+
+<p>
+For eksempel kunne vi se et originalt papirklip af H.C. Andersen, design
+møbler, talerkner, krus, og gamle dukketeaterer.
+</p>
+
+<figure id="paper1">
+<img src="/res/tur/papir1.jpeg" alt="Fancy stol"></img>
+<figcaption>
+<span class="figure-caption">Fancy designerstol. I baggrunden kan ses en kjole af papir.</span>
+</figcaption>
+</figure>
+
+<figure id="paper2">
+<img src="/res/tur/papir2.jpeg" alt="Fancy skål"></img>
+<figcaption>
+<span class="figure-caption">Eksempel på, hvad der kan laves af papir.</span>
+</figcaption>
+</figure>
+
+<figure id="paper3">
+<img src="/res/tur/papir3.jpeg" alt="Teater"></img>
+<figcaption>
+<span class="figure-caption">Skatteøen</span>
+</figcaption>
+</figure>
+
+<p>
+Efter sandskulpture og papirmuseer, skulle vi hjemad. Dette foregik
+forholdsvis direkte via landevejen der går fra Blokhus til Aalborg.
+</p>
+
+<p>
+Undervejs cyklede vi gennem hele ret hæftige byger.
+</p>
+
+<figure id="end">
+<img src="/res/tur/end.jpeg" alt="Slut på tur"></img>
+<figcaption>
+<span class="figure-caption">Gennemblødte, men ellers glade.</span>
+</figcaption>
+</figure>
+
+<p>
+Men pyt. Vi var jo på vej tilbage til en varm (og tør!) lejlighed.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2338567" class="outline-2">
+<h2 id="org2338567">Afsluttende tanker</h2>
+<div class="outline-text-2" id="text-org2338567">
+<p>
+I det hele taget var turen vildt fed, og jeg vil helt klart anbefale det til
+stort set hvem som helst. Det er vildt, hvor meget lille bitte Danmark har at
+byde på, så længe man bare udforsker det på den rigtige måde.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<hr><p class="license">CC BY-SA</p><p class="date">Last modified: 2021-09-15 Wed 23:23</p>
+</div>
+</body>
+</html>
