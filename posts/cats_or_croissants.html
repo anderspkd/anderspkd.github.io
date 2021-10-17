@@ -3,7 +3,7 @@
 <head>
 <!-- 2021-10-17 Sun 12:10 -->
 <meta charset="utf-8">
-<title>Latest posts</title>
+<title>Cats or Croissants</title>
 <meta name="generator" content="Org mode">
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
@@ -243,26 +243,180 @@ for the JavaScript code in this tag.
 </div>
 <div id="content">
 <header>
-<h1 class="title">Latest posts</h1>
-</header>
-<div id="outline-container-org1e50696" class="outline-2">
-<h2 id="org1e50696">Cats or Croissants&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ML">ML</span>&#xa0;<span class="Silly">Silly</span></span></h2>
-<div class="outline-text-2" id="text-org1e50696">
+<h1 class="title">Cats or Croissants</h1>
+</header><div class="PREVIEW">
 <p>
 Can popular image prediction APIs help us distinguish pictures of cats from
 pictures of crossaints?  Turns out the answer is yes.
- <a href="cats_or_croissants.html">&#x2026; read more</a>
 </p>
-<hr>
+
 </div>
-</div>
-<div id="outline-container-org7bb7e8c" class="outline-2">
-<h2 id="org7bb7e8c">På tur i det nordjyske&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Personal">Personal</span>&#xa0;<span class="Biking">Biking</span></span></h2>
-<div class="outline-text-2" id="text-org7bb7e8c">
+
 <p>
-I sommeren 2021 tog min kæreste og jeg på cykeltur rundt omkring i det nordjyske.
-Dette indlæg giver et kort overblik over vores rute, samt de forskellige ting vi så, og steder vi besøgte.
- <a href="tur_i_det_nordjyske.html">&#x2026; read more</a>
+As the very cool picture below shows, an orange tabby cat can look surprisingly
+similar to a croissant.  This naturally raises the important question: If a
+human (such as myself) can be so fooled, what about an image prediction API?
+</p>
+
+<p>
+(I want to point out that I am perfectly capable of figuring out which picture
+is of a cat, and which is of a croissant.)
+</p>
+
+<figure id="cc">
+<img src="/res/catcroissants.jpeg" alt="dummy image"></img>
+<figcaption>
+<span class="figure-caption">Figure 1: </span>Cats or Croissants?
+</figcaption>
+</figure>
+
+<p>
+To answer the question in question&#x2014;that is, "<i>Can we use an image prediction
+API to distinguish cats from crossaints</i>"&#x2014;I used the <a href="https://cloud.google.com/vision">Google Vision</a> API.  Each
+of the images in the above image was cut using GIMP and then fed into the box on
+the Google Vision API website labelled "try the API".  The table below shows the
+result of doing so:
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-right">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">#</th>
+<th scope="col" class="org-left">True label</th>
+<th scope="col" class="org-left">Predicted label (% confidence)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">Cat</td>
+<td class="org-left">Cat (99%)</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">Croissant</td>
+<td class="org-left">Croissant (89%)</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">Two cats (very cute)</td>
+<td class="org-left">Cat (%87)</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">Two croissants (very delicious)</td>
+<td class="org-left">Croissant x2 (80%)</td>
+</tr>
+
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">Croissant</td>
+<td class="org-left">Croissant (%88)</td>
+</tr>
+
+<tr>
+<td class="org-right">6</td>
+<td class="org-left">Cat on a mat</td>
+<td class="org-left">Cat (98%)</td>
+</tr>
+
+<tr>
+<td class="org-right">7</td>
+<td class="org-left">(Two?) Croissant(s) on a plate</td>
+<td class="org-left">Croissant (93%)</td>
+</tr>
+
+<tr>
+<td class="org-right">8</td>
+<td class="org-left">Cat wit a blue collar</td>
+<td class="org-left">Cat (89%)</td>
+</tr>
+
+<tr>
+<td class="org-right">9</td>
+<td class="org-left">Small cat</td>
+<td class="org-left">Cat (98%)</td>
+</tr>
+
+<tr>
+<td class="org-right">10</td>
+<td class="org-left">Croissant with nuts</td>
+<td class="org-left">Bread (64%)</td>
+</tr>
+
+<tr>
+<td class="org-right">11</td>
+<td class="org-left">Cat</td>
+<td class="org-left">Cat (98%)</td>
+</tr>
+
+<tr>
+<td class="org-right">12</td>
+<td class="org-left">Croissant with powdered sugar</td>
+<td class="org-left">Croissant (94%)</td>
+</tr>
+
+<tr>
+<td class="org-right">13</td>
+<td class="org-left">Croissant</td>
+<td class="org-left">Croissant (92%)</td>
+</tr>
+
+<tr>
+<td class="org-right">14</td>
+<td class="org-left">Cat</td>
+<td class="org-left">Cat (99%)</td>
+</tr>
+
+<tr>
+<td class="org-right">15</td>
+<td class="org-left">Croissant with background croissants</td>
+<td class="org-left">Croissant x2 (92%, 79%)</td>
+</tr>
+
+<tr>
+<td class="org-right">16</td>
+<td class="org-left">Cat</td>
+<td class="org-left">Cat (99%)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Interestingly, the API can indentify multiple objects, which is why pictures
+with mutliple croissants get multiple labels.  Perhaps just as interestingly,
+this didn't apply for pictures with more than one cat.  (Perhaps Google
+discriminates against cats?)  Note also that the croissant with nuts
+(picture # 10) was identified as bread.  A disucssion on whether or not a
+croissant with toppings is in fact still a croissant is out of scope for this
+article though.
+</p>
+
+<p>
+So, in conclusion, if you unsure about whether to comment "cute!" or
+"delicious!" the next time someone uploads a picture of something orange on
+their social media, you can ask google for help.
+</p>
+
+<div id="outline-container-org42b9f66" class="outline-2">
+<h2 id="org42b9f66">Remark</h2>
+<div class="outline-text-2" id="text-org42b9f66">
+<p>
+I did this arguably silly post as part of my PhD defense. At some point, I did
+some restructuring on this blog, and the post was lost. So this is a copy of the
+original one.
 </p>
 </div>
 </div>
