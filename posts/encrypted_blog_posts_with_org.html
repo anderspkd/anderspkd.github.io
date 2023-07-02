@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2023-07-02 Sun 22:16 -->
+<meta charset="utf-8" />
+<title>Publishing "private" blog posts with Emacs and org-mode</title>
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" href="/res/style.css" type="text/css"/>
+</head>
+<body>
+<div id="preamble" class="status">
+<ul><a href="/">Front</a><a href="/posts">Posts</a><a href="/publications.html">Publications</a></ul><hr>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">Publishing "private" blog posts with Emacs and org-mode</h1>
+</header><div class="PREVIEW" id="org0751016">
+<p>
+A coworker of mine had a really clever idea for sending out invitations: Encrypt
+the invitation, upload the invitation on some website that allows hosting static
+content (e.g., github pages) and let the visitors enter the decryption key.
+</p>
+
+<p>
+This blog post is really just about that, but automated a bit using a bit of
+python.
+</p>
+
+</div>
+
+
+<div id="outline-container-orgf624f8c" class="outline-2">
+<h2 id="orgf624f8c">How it works</h2>
+<div class="outline-text-2" id="text-orgf624f8c">
+<p>
+Conceptually, the idea is very simple:
+</p>
+
+<ul class="org-ul">
+<li>Use org-mode's <a href="https://orgmode.org/manual/Publishing.html">publishing</a> functionality to convert a page from <code>.org</code> to <code>.html</code>.</li>
+<li>Use a small python script to encrypt and move the <code>.html</code> file.</li>
+</ul>
+
+<p>
+When a visitor goes to the site, use a small piece of Javascript to decrypt the
+content and overwrite the page so that the original HTML gets displaced.
+</p>
+
+<p>
+But less see how it works a bit more in detail.
+</p>
+</div>
+
+<div id="outline-container-orgbbc1a35" class="outline-3">
+<h3 id="orgbbc1a35">From org to HTML</h3>
+<div class="outline-text-3" id="text-orgbbc1a35">
+<p>
+The first step simply involves publishing the org file as one normally
+would. The only difference is that we will publish the file into a temporary
+directory, instead of directly into the repository that goes online.
+</p>
+
+<p>
+For example, if we place the org files that we wish to publish encrypted in a
+directory <code>hidden</code> then we could place the published HTML files in another
+directory <code>hidden_temp</code>, or something.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2d75254" class="outline-3">
+<h3 id="org2d75254">Encrypting the HTML file</h3>
+<div class="outline-text-3" id="text-org2d75254">
+<p>
+The next step is to encrypt the HTML file. While the encryption itself is done
+using a small python script, calling it can again be done through emacs as part
+of org-mode's publishing functionality.
+</p>
+
+<p>
+To this end, we will create a new <a href="https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html">component</a> which uses a custom publishing
+function that simply calls the python program. The component I use looks like
+this
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">("B-secret-publish"
+         :base-directory ,(blog::make-directory "hidden_temp")
+         :publishing-directory ,(blog::make-publishing-directory "hidden")
+         :base-extension "html"
+         :recursive t
+         :secrets-file ,(blog::make-directory "secrets.txt")
+         :publishing-function blog::publish-encrypted)
+</pre>
+</div>
+
+<p>
+The <code>blog::publish-encrypted</code> function is quite simple. All it does is call a
+python script with arguments received from the component above, namely the
+filename publishing directory and the <code>secrets-file</code> file, which is where the
+encryption key gets stored.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(defun blog::publish-encrypted (plist filename pub-dir)
+  (let ((output-filename (concat pub-dir (file-name-nondirectory filename)))
+        (secrets-filename (plist-get plist :secrets-file))
+        (encrypt-py (blog::make-directory "scripts" "encrypt.py")))
+    (message (format "Encrypting %s %s %s" filename output-filename secrets-filename))
+    (start-process "encrypt-blog-post" nil encrypt-py filename output-filename secrets-filename)))
+</pre>
+</div>
+
+<p>
+Finally, the python script <code>encrypt.py</code> takes care of the actual encryption.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">#!/usr/bin/python
+
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+import os
+from sys import argv
+from base64 import b64encode
+
+if len(argv) &lt; 4:
+    print(f"usage: {argv[0]} [input.html] [output.html] [secrets.txt]")
+    exit(1)
+
+key = os.urandom(32)
+iv = os.urandom(16)
+cipher = Cipher(algorithms.AES(key), modes.CTR(iv))
+encryptor = cipher.encryptor()
+
+input_filename = argv[1]
+output_filename = argv[2]
+secrets_txt = argv[3]
+
+ct = b''
+
+with open(input_filename, 'rb') as f:
+    for line in f:
+        ct += encryptor.update(line)
+    ct += encryptor.finalize()
+
+ctxt = b64encode(ct)
+
+with open(output_filename, 'wb') as f:
+    f.write(b'&lt;!DOCTYPE html&gt;&lt;html lang="en"&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;\n')
+    f.write(b'&lt;div id="c"&gt;')
+    f.write(ctxt)
+    f.write(b'&lt;/div&gt;')
+    f.write(b'&lt;script src="/res/js/decrypt.js"&gt;&lt;/script&gt;&lt;/body&gt;&lt;/html&gt;')
+
+with open(secrets_txt, 'ab') as f:
+    f.write(output_filename.encode())
+    f.write(b', ')
+    f.write(b64encode(key + iv))
+    f.write(b'\n')
+</pre>
+</div>
+
+<p>
+The script simple encrypts the whole file using AES-CBC, and outputs a new HTML
+page that (1) contains the original encrypted file, and (2) includes the script
+that will be used to decrypt the file.
+</p>
+
+<p>
+The last thing the script does, is write the key and IV to a file so that it's
+actually possible to see the page.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcc05d7f" class="outline-3">
+<h3 id="orgcc05d7f">Decrypting and displaying the page</h3>
+<div class="outline-text-3" id="text-orgcc05d7f">
+<p>
+The last step is to decrypt and display the page&#x2014;that is, reverting the steps
+above, but at the visitors end.
+</p>
+
+<p>
+This is done through a very simple piece of javascript (the <code>decrypt.js</code>
+included in the file generated by the python code above). This script does three
+things:
+</p>
+
+<ol class="org-ol">
+<li>First it reads the key and IV from the URL fragment.</li>
+<li>Then it decrypts the base64 encoded string in the div with tag "c".</li>
+<li>Finally it overwrites the whole page with the result of the decryption.</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-javascript">(function() {
+    let k_iv = Uint8Array.from(atob(window.location.hash.substring(1)), c =&gt; c.charCodeAt(0))
+
+    let key = k_iv.slice(0, 32)
+    let iv = k_iv.slice(32, 48)
+
+    let ctxt = Uint8Array.from(atob(document.getElementById('c').innerHTML), c =&gt; c.charCodeAt(0))
+
+    window.crypto.subtle.importKey(
+        "raw",
+        key,
+        {
+            name: "AES-CTR"
+        },
+        false,
+        ["decrypt"]
+    ).then(function (k) {
+        window.crypto.subtle.decrypt(
+            {
+                name: "AES-CTR",
+                counter: iv,
+                length: 128
+            },
+            k,
+            ctxt
+        ).then(function(decrypted) {
+            let td = new TextDecoder()
+            let actual_page_content = td.decode(decrypted)
+            document.open()
+            document.write(actual_page_content)
+            document.close()
+        }).catch(function(err){
+            console.log(err)
+        })
+    }).catch(function(err) {
+        console.log(err)
+    });
+})();
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgecc4881" class="outline-2">
+<h2 id="orgecc4881">Limitations</h2>
+<div class="outline-text-2" id="text-orgecc4881">
+<p>
+This whole thing does not do anything else besides encrypt a static HTML page,
+which in particular means that it wont encrypt any content that is included from
+external sources. So don't expect it to hide e.g., the content of an img tag.<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
+</p>
+
+<p>
+The encrypted page is also not authenticated. But that really shouldn't be an
+issue, since it will be sent on authenticated channel anyway (github uses TLS,
+after all).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc4aca74" class="outline-2">
+<h2 id="orgc4aca74">Concluding</h2>
+<div class="outline-text-2" id="text-orgc4aca74">
+<p>
+Anyway. This is pretty neat, I think. I'm not sure what I'll use it for, but now
+it exists and it seems to work.
+</p>
+
+<p>
+A example page can be seen <a href="https://anderspkd.github.io/hidden/hello.html">here</a>.
+</p>
+
+<p>
+The key is: <code>+nR3AKqEZqlqakavJyoCaj7ZFRdRAh4ZccNZsDCIL/q+AWop9CssObbgiZrGT5oU</code>.
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Although one can include the image inline as a base64 encoded string, which would then result in the image getting encrypted.
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<hr><p class="license">CC BY-SA</p><p class="date">Last modified: 2023-07-02 Sun 22:16</p>
+</div>
+</body>
+</html>
