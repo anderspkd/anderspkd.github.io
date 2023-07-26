@@ -143,3 +143,7 @@ figure video {
 figure span {
     font-style: italic;
 }
+
+h2 a, h3 a, h4 a, h5 a {
+    color: inherit;
+}

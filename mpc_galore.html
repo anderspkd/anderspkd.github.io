@@ -3,7 +3,7 @@
 <head>
 <!-- 2023-07-26 Wed 22:36 -->
 <meta charset="utf-8" />
-<title>Latest posts</title>
+<title>MPC Galore: A Large List of MPC Applications</title>
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -190,6 +190,7 @@
   .org-svg { }
 </style>
 <link rel="stylesheet" href="/res/style.css" type="text/css"/>
+<script type="text/javascript" src="/res/js/mathjax/tex-chtml.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -197,45 +198,142 @@
 </div>
 <div id="content" class="content">
 <header>
-<h1 class="title">Latest posts</h1>
-</header>
-<div id="outline-container-orgcff636d" class="outline-2">
-<h2 id="orgcff636d">Publishing "private" blog posts with Emacs and org-mode&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Emacs">Emacs</span></span></h2>
-<div class="outline-text-2" id="text-orgcff636d">
-<p>
-A coworker of mine had a really clever idea for sending out invitations: Encrypt
-the invitation, upload the invitation on some website that allows hosting static
-content (e.g., github pages) and let the visitors enter the decryption key.
+<h1 class="title">MPC Galore: A Large List of MPC Applications</h1>
+</header><p>
+Or: "I have a hammer, but need a nail".
 </p>
 
 <p>
-This blog post is really just about that, but automated a bit using a bit of
-python.
- <a href="encrypted_blog_posts_with_org.html">&#x2026; read more</a>
+<b>This page is a work in progress (clearly)</b>
 </p>
-<hr>
-</div>
-</div>
-<div id="outline-container-org506deff" class="outline-2">
-<h2 id="org506deff">Cats or Croissants&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ML">ML</span>&#xa0;<span class="Silly">Silly</span></span></h2>
-<div class="outline-text-2" id="text-org506deff">
+
 <p>
-Can popular image prediction APIs help us distinguish pictures of cats from
-pictures of crossaints?  Turns out the answer is yes.
- <a href="cats_or_croissants.html">&#x2026; read more</a>
+This page contains a big, ever expanding (when I can find the time) list of
+application areas for Secure Multiparty Computation.  The list is a collection
+of applications I've come up with, as well as interesting applications of MPC
+I've stumbled upon. A best effort has been made to include sources where
+relevant.
 </p>
-<hr>
-</div>
-</div>
-<div id="outline-container-orgf2073c8" class="outline-2">
-<h2 id="orgf2073c8">På tur i det nordjyske&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Personal">Personal</span>&#xa0;<span class="Biking">Biking</span></span></h2>
-<div class="outline-text-2" id="text-orgf2073c8">
+
+<div id="outline-container-org92d30dd" class="outline-2">
+<h2 id="org92d30dd"><a href="#org92d30dd">Auctions</a></h2>
+<div class="outline-text-2" id="text-org92d30dd">
 <p>
-I sommeren 2021 tog min kæreste og jeg på cykeltur rundt omkring i det nordjyske.
-Dette indlæg giver et kort overblik over vores rute, samt de forskellige ting vi så, og steder vi besøgte.
- <a href="tur_i_det_nordjyske.html">&#x2026; read more</a>
+Secure and private auctions is a great example of where MPC shines: It has many
+participants that have an interest in keeping their personal bids private and
+the function to compute is fairly simple.
+</p>
+
+<p>
+While there are <a href="https://en.wikipedia.org/wiki/Category:Types_of_auction">many different types of auctions</a> they all (I guess, I'm not an
+auction expert) the same basic principles:
+</p>
+
+
+<ol class="org-ol">
+<li>A set of \(n\) parties who cannot all agree on a trusted third
+party. (Otherwise we'd just use that to conduct the auction).</li>
+<li>Each party has a bid \(v_i\).</li>
+<li>Whoever has the highest bid \(v=\max_i{v_i}\), wins (or more generally, there
+is some function that takes all bids as input, and outputs the id of the
+winner, and the price that the winner has to pay).</li>
+</ol>
+
+
+<p>
+Secure and private auctions was the first application of MPC to be realized in a
+practical setting. This of course is the "famous" Danish sugar beet auction
+<a href="https://link.springer.com/chapter/10.1007/978-3-642-03549-4_20">(Bogetoft et al. 2009)</a>.
+</p>
+
+<p>
+Running an auction in MPC works particularly well using a binary protocol, since
+the bulk of the work involes non-linear computations, typically comparisons. In
+fact, fairly optimized protocols exist <a href="https://link.springer.com/chapter/10.1007/3-540-45853-0_2">(Kurosawa &amp; Ogata. 2002)</a>. Auctions are
+also one of those applications that make a lot of sense in the "outsourced MPC"
+setting. If there are 100s of bidders, then a protocol using involving all
+parties is likely gonna be too slow (not to mention that it would require all
+bidders to be online at the same time).
+</p>
+
+<p>
+Lastly, a secure auction should probably be run with a protocol that guarantees
+output. At least if an abort would require bidders to re-submit their bid.
 </p>
 </div>
+</div>
+
+<div id="outline-container-org81a0561" class="outline-2">
+<h2 id="org81a0561"><a href="#org81a0561">Voting</a></h2>
+<div class="outline-text-2" id="text-org81a0561">
+<p>
+Voting is (in most scenarios) a private affair. Indeed, in many countries,
+privacy of a vote is something guaranteed by law.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaa4339f" class="outline-2">
+<h2 id="orgaa4339f"><a href="#orgaa4339f">Polls and Surveys</a></h2>
+<div class="outline-text-2" id="text-orgaa4339f">
+<p>
+A poll, or survey, can in principle be viewed as a type of vote.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgca04ec8" class="outline-2">
+<h2 id="orgca04ec8"><a href="#orgca04ec8">Dark Pools</a></h2>
+</div>
+
+<div id="outline-container-orga65970a" class="outline-2">
+<h2 id="orga65970a"><a href="#orga65970a">Statistics</a></h2>
+<div class="outline-text-2" id="text-orga65970a">
+<ul class="org-ul">
+<li>Linear regression</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0889417" class="outline-2">
+<h2 id="org0889417"><a href="#org0889417">Machine Learning</a></h2>
+<div class="outline-text-2" id="text-org0889417">
+</div>
+<div id="outline-container-orgc62293f" class="outline-3">
+<h3 id="orgc62293f"><a href="#orgc62293f">Inference</a></h3>
+</div>
+
+<div id="outline-container-org94243e8" class="outline-3">
+<h3 id="org94243e8"><a href="#org94243e8">Training</a></h3>
+</div>
+
+<div id="outline-container-org3e1ea4a" class="outline-3">
+<h3 id="org3e1ea4a"><a href="#org3e1ea4a">Federated Learning</a></h3>
+</div>
+</div>
+
+<div id="outline-container-org96328e5" class="outline-2">
+<h2 id="org96328e5"><a href="#org96328e5">Graph Computations</a></h2>
+</div>
+
+<div id="outline-container-org1fff4de" class="outline-2">
+<h2 id="org1fff4de"><a href="#org1fff4de">Digital Signatures</a></h2>
+</div>
+
+<div id="outline-container-org8b409ba" class="outline-2">
+<h2 id="org8b409ba"><a href="#org8b409ba">Genomics</a></h2>
+</div>
+
+<div id="outline-container-orgff615d2" class="outline-2">
+<h2 id="orgff615d2"><a href="#orgff615d2">Shuffling</a></h2>
+</div>
+
+<div id="outline-container-org6248401" class="outline-2">
+<h2 id="org6248401"><a href="#org6248401">Escrow Allegation</a></h2>
+</div>
+
+<div id="outline-container-org7487323" class="outline-2">
+<h2 id="org7487323"><a href="#org7487323">k-th Ranked Element</a></h2>
 </div>
 </div>
 <div id="postamble" class="status">
