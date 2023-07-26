@@ -1,8 +1,8 @@
 body {
-    background-color: whitesmoke;
+    background-color: white;
     margin-left: auto;
     margin-right: auto;
-    max-width: 900px;
+    max-width: 750px;
     font-family: sans-serif;
 }
 
@@ -17,14 +17,14 @@ body {
 .tag {
     background-color: inherit;
     font-family: inherit;
-    font-size: 55%;
+    font-size: 45%;
     color: grey;
 }
 .tag span {
     display: inline-block;
-    padding: 0px 7px 0px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
+    padding: 2px 3px 2px 2px;
+    border: 0px solid lightgray;
+    border-radius: 2px;
 }
 
 h1.title {
@@ -67,11 +67,16 @@ caption.t-above span.table-number {
 }
 
 #content {
-    font-size: 90%;
+    font-size: 15px;
     padding: 5px;
-    line-height: 22px;
+    line-height: 25px;
     text-align: justify;
     color: #333333;
+}
+
+.src {
+    font-size: 70%;
+    line-height: 20px
 }
 
 #footnotes {
