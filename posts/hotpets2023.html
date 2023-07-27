@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-07-24 Mon 23:01 -->
+<!-- 2023-07-27 Thu 21:27 -->
 <meta charset="utf-8" />
 <title>Are PETs and Algorithmetic Accountability at loggerheads?</title>
 <meta name="generator" content="Org Mode" />
@@ -190,15 +190,16 @@
   .org-svg { }
 </style>
 <link rel="stylesheet" href="/res/style.css" type="text/css"/>
+<script type="text/javascript" src="/res/js/mathjax/tex-chtml.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="preamble" class="status">
-<ul><a href="/">Front</a><a href="/posts">Posts</a><a href="/publications.html">Publications</a></ul><hr>
+<ul><a href="/">Front</a><a href="/posts">Posts</a><a href="/publications.html">Publications</a><a href="/mpc_galore.html">MPC Galore</a></ul><hr>
 </div>
 <div id="content" class="content">
 <header>
 <h1 class="title">Are PETs and Algorithmetic Accountability at loggerheads?</h1>
-</header><div class="PREVIEW" id="orgf4001d7">
+</header><div class="PREVIEW" id="orgce77b31">
 <p>
 Combining MPC and ML with the goal of obtaining something "practical" may not be
 as straightforward as it seems. In fact, MPC might exacerbate certain issues
@@ -288,132 +289,95 @@ insight. That might cause problems.
 </p>
 
 <p>
-Slides from the talk can be found <a href="http://localhost:8000/res/files/hotpets2023_slides.pdf">here</a>.
+Slides from the talk can be found <a href="https://anderspkd.github.io/res/files/hotpets2023_slides.pdf">here</a>.
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org9c69018" class="outline-2">
-<h2 id="org9c69018">Threat modeling for PPML</h2>
-<div class="outline-text-2" id="text-org9c69018">
+<div id="outline-container-org6b5e62c" class="outline-2">
+<h2 id="org6b5e62c">Threat modeling for PPML</h2>
+<div class="outline-text-2" id="text-org6b5e62c">
 <p>
-In order to investigate where PP and ML might be at odds, might be to start by
-asking: What is a good threat model for a PPML system?
+At the center of the issue I'm writing about here, is the fact that PPML
+operates with <i>two</i> threat models, not one. First, there is whatever threat
+model that the privacy tech operates in. And second, there's whatever threat
+model the ML model operates in.
 </p>
 
 <p>
-To make things concrete, I will only consider MPC as the privacy tool here
-(although I see no reason why the arguments won't work for FHE as well).
+If we specify each in isolation, then we are effectively talking about two
+distinct adversaries that operate independently.
 </p>
 
 <p>
-Any PPML system will operate in the context of some "MPC adversary". So, we are
-at the very least dealing with either a passive or active adversary who may or
-may not be computationally bounded.<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup> Being a bit liberal here, we can say
-that this gives us four possible choices of adversary: Passive/bounded,
-passive/unbounded, active/bounded and active/unbounded.
+This may work. In fact, that's essentially the threat model of a recent cool
+<a href="https://files.sri.inf.ethz.ch/website/papers/ccs22-phoenix.pdf">paper</a> by Jovanovic et al.
 </p>
 
 <p>
-While MPC literature has a very well-established definition of what an adversary
-is, the same cannot be said for ML. That doesn't mean that others haven't tried
-to come up with definitions of "ML adversaries" for different scenarios,
+But such a separation is a bit hard to justify in some scenarios. In particular
+those where the server is involved in the computation. Let's consider an example
+to see what I mean:
 </p>
 
 <p>
-For a PPML system, there are actually two threat models in play. Not one.
+Suppose we have a single server \(S\) and a client \(C\). The server has a model
+\(M\), the client has an input \(x\) and the purpose of the system is to allow the
+client to learn \(M(x)\). The client wishes to keep its input private, so it
+resorts to using a secure computation protocol with semi-honest security. That
+is, it trusts the that the server won't deviate from the protocol.
 </p>
 
 <p>
-The first is of course the threat model used for the particular privacy tool
-that is used. For the purpose of being concrete, I will take that to be MPC, but
-it may as well be Fully Homomorphic encryption, and to some extent Differential
-Privacy.
+Now, it is important to remember that guarantees about the <i>input</i> is <i>not</i> part
+of the protocol. So, <i>technically</i> speaking, the server is allowed to input a
+"bad" (e.g., biased) model. And such an action might be perfectly reasonable for
+a misbehaving server: Perhaps the server is resigned to not being able to see
+the clients inputs&#x2014;by using a biased model, it can still unfairly deny a loan,
+insurance or job to targeted clients.
 </p>
 
 <p>
-The second threat model is that of the ML system. The threat model in this
-context is less well understood, and formally less well-defined.
+If the threat model we are using (for the secure computation) is semi-honest,
+then an argument can be made that the server won't use a biased model on
+purpose, and so, perhaps we are good.
 </p>
-</div>
 
-<div id="outline-container-org25d4b4e" class="outline-3">
-<h3 id="org25d4b4e">Threat modeling for MPC</h3>
-<div class="outline-text-3" id="text-org25d4b4e">
 <p>
-A threat model for MPC is relatively simple, in the sense that we assume there
-is an adversary that corrupts so-and-so many of the parties, can perform
-so-and-so much computation and where so-and-so attack is allowed. For example,
-the well-known SPDZ protocol deals with an adversary that is computationally
-bounded, corrupts all but one party, can deviate arbitrarily, and where it
-protocol aborts are allowed.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org0e68431" class="outline-3">
-<h3 id="org0e68431">Threat modeling for ML</h3>
-<div class="outline-text-3" id="text-org0e68431">
-<p>
-A threat model for ML, on the other hand, is comparatively less well defined.
+If the threat model on the other hand assumes a malicious adversary, then it
+suddenly seems hard to argue that, on the one hand, the server cannot be trusted
+to even send the right messages in the protocol, but on the other hand, the
+server is trusted to use a non-biased model.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge31c99b" class="outline-3">
-<h3 id="orge31c99b">Threat modeling for PPML</h3>
-<div class="outline-text-3" id="text-orge31c99b">
+<div id="outline-container-org495e542" class="outline-2">
+<h2 id="org495e542">Solving this conundrum</h2>
+<div class="outline-text-2" id="text-org495e542">
 <p>
-A threat model for a PPML system must necessarily accommodate both the adversary
-for the Privacy tool (e.g., MPC) as well as the ML system.
+Whether or not the above is an issue, it does lend itself to some interesting
+research questions: In particular, is it possible to provide <i>both</i> privacy and
+some reasonable notion of fairness, robustness, and/or explainability?
 </p>
 
 <p>
-However, more often than that, PPML solutions are aimed at just one of the two:
-the privacy tool adversary. And funny things can occur if we try to combine them.
+What makes these questions interesting, is the fact that whatever ML properties
+we wish to satisfy, must somehow be satisfiable while working in a secure
+computation context. And that seems hard to do, at least intuitively. Indeed,
+guaranteeing certain properties about an ML model seemingly implies a great(er)
+degree of insight into the model's parameters; but this insight is exactly what
+secure computation techniques aim to remove!
 </p>
 
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">Active adversary</th>
-<th scope="col" class="org-left">Passive adversary</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">Fair?</td>
-<td class="org-left">No</td>
-<td class="org-left">Maybe</td>
-</tr>
-
-<tr>
-<td class="org-left">Explainable?</td>
-<td class="org-left">No</td>
-<td class="org-left">Maybe</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org347f4ab" class="outline-2">
-<h2 id="org347f4ab">Solutions</h2>
-<div class="outline-text-2" id="text-org347f4ab">
 <p>
-There are a couple of solutions
+While this aparent clash between properties related to accountability and those
+related to privacy, have been <a href="https://ieeexplore.ieee.org/document/9933776">noted</a> before.
+</p>
+
+<p>
+But that doesn't mean that the problem cannot be solved.
 </p>
 </div>
 </div>
@@ -437,15 +401,11 @@ For example, multiple example prompts on <a href="https://stackdiary.com/chatgpt
 See e.g., <a href="https://www.ibm.com/topics/artificial-intelligence-medicine">https://www.ibm.com/topics/artificial-intelligence-medicine</a>
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-It wont be necessary for the purpose of this post to think about whether the adversary corrupts a majority or minority of parties.
-</p></div></div>
-
 
 </div>
 </div></div>
 <div id="postamble" class="status">
-<hr><p class="license">CC BY-SA</p><p class="date">Last modified: 2023-07-24 Mon 23:01</p>
+<hr><p class="license">CC BY-SA</p><p class="date">Last modified: 2023-07-27 Thu 21:27</p>
 </div>
 </body>
 </html>
