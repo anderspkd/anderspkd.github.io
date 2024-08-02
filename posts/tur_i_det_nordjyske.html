@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-12-22 Thu 16:13 -->
+<!-- 2024-08-01 Thu 15:13 -->
 <meta charset="utf-8">
 <title>På tur i det nordjyske</title>
 <meta name="generator" content="Org mode">
@@ -36,7 +36,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -48,7 +48,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -191,50 +191,26 @@
 </style>
 <link rel="stylesheet" href="/res/style.css" type="text/css"/>
 <script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
 </script>
 </head>
 <body>
@@ -244,7 +220,7 @@ for the JavaScript code in this tag.
 <div id="content">
 <header>
 <h1 class="title">På tur i det nordjyske</h1>
-</header><div class="PREVIEW">
+</header><div class="PREVIEW" id="org70dabd3">
 <p>
 I sommeren 2021 tog min kæreste og jeg på cykeltur rundt omkring i det nordjyske.
 Dette indlæg giver et kort overblik over vores rute, samt de forskellige ting vi så, og steder vi besøgte.
@@ -252,9 +228,9 @@ Dette indlæg giver et kort overblik over vores rute, samt de forskellige ting v
 
 </div>
 
-<div id="outline-container-org5354faa" class="outline-2">
-<h2 id="org5354faa">Hurtige tur-stats</h2>
-<div class="outline-text-2" id="text-org5354faa">
+<div id="outline-container-orgea4634c" class="outline-2">
+<h2 id="orgea4634c">Hurtige tur-stats</h2>
+<div class="outline-text-2" id="text-orgea4634c">
 <p>
 Vores tur strakte sig over 13 dage, hvor vores cykel var involveret i 12 af
 dem.  Vi præsterede at tilbagelægge 568km på disse 13 dage, og vores
@@ -296,9 +272,9 @@ der voldte de "helt" store problemer.
 </div>
 </div>
 
-<div id="outline-container-org6c884e2" class="outline-2">
-<h2 id="org6c884e2">Fra Aarhus til Aalborg</h2>
-<div class="outline-text-2" id="text-org6c884e2">
+<div id="outline-container-orgf341ac7" class="outline-2">
+<h2 id="orgf341ac7">Fra Aarhus til Aalborg</h2>
+<div class="outline-text-2" id="text-orgf341ac7">
 <p>
 De første 4 dage gik med at cykle fra Aarhus til Aalborg. Dette skete via
 Udbyhøj, Hadsund og Lille Vildmose. Ruten var som sådan ikke noget vi havde
@@ -314,9 +290,9 @@ skilte, som viste de nationale cykelruter) eller OsmAnd.
 </figure>
 </div>
 
-<div id="outline-container-org6642415" class="outline-3">
-<h3 id="org6642415">Dag 1</h3>
-<div class="outline-text-3" id="text-org6642415">
+<div id="outline-container-org438e66e" class="outline-3">
+<h3 id="org438e66e">Dag 1</h3>
+<div class="outline-text-3" id="text-org438e66e">
 <p>
 Vi skulle egentlig have været af sted om lørdagen (og således have været på
 tur i 14 dage, i stedet for 13), men diverse ting og sager kom i vejen.  Om
@@ -386,9 +362,9 @@ Resten af dagen var vejret rigtigt flot.
 </div>
 </div>
 
-<div id="outline-container-org2869bdf" class="outline-3">
-<h3 id="org2869bdf">Gammel Estrup</h3>
-<div class="outline-text-3" id="text-org2869bdf">
+<div id="outline-container-org4797005" class="outline-3">
+<h3 id="org4797005">Gammel Estrup</h3>
+<div class="outline-text-3" id="text-org4797005">
 <p>
 Anden dag på turen startede ud med mere flot vejr, og næste stop skulle være
 <a href="https://da.wikipedia.org/wiki/Gammel_Estrup">Gammel Estrup</a>.
@@ -477,9 +453,9 @@ der var en millard insekter, så vi endte på campingplads i stedet.
 </div>
 </div>
 
-<div id="outline-container-org0cf7c3c" class="outline-3">
-<h3 id="org0cf7c3c">Lille Vildmose</h3>
-<div class="outline-text-3" id="text-org0cf7c3c">
+<div id="outline-container-org4b04739" class="outline-3">
+<h3 id="org4b04739">Lille Vildmose</h3>
+<div class="outline-text-3" id="text-org4b04739">
 <p>
 Næste dag gik turen så stille og roligt op til Hadsund, og så videre op til
 <a href="https://da.wikipedia.org/wiki/Lille_Vildmose">Lille Vildmose</a>.
@@ -527,9 +503,9 @@ shelter viste sig at koste yderliggere 20kr per person.
 </div>
 </div>
 
-<div id="outline-container-orgacc1fa2" class="outline-3">
-<h3 id="orgacc1fa2">Aalborg og en hviledag</h3>
-<div class="outline-text-3" id="text-orgacc1fa2">
+<div id="outline-container-org3d81a45" class="outline-3">
+<h3 id="org3d81a45">Aalborg og en hviledag</h3>
+<div class="outline-text-3" id="text-org3d81a45">
 <p>
 Sidste dag på første del af turen cyklede vi små 40km fra Lille Vildmose til
 Aalborg, hvor vi havde bestilt to overnatninger på et hotel.
@@ -609,9 +585,9 @@ en fin gåtur langs havnen.
 </div>
 </div>
 
-<div id="outline-container-org66131f6" class="outline-2">
-<h2 id="org66131f6">Fra Aalborg til Skagen</h2>
-<div class="outline-text-2" id="text-org66131f6">
+<div id="outline-container-org4e52e80" class="outline-2">
+<h2 id="org4e52e80">Fra Aalborg til Skagen</h2>
+<div class="outline-text-2" id="text-org4e52e80">
 <p>
 Over de næste par dage, var planen at vi ville cykle ud langs Limfjorden, op
 langs østkysten for så til sidst at ende så langt nord på, som man kan komme i
@@ -632,9 +608,9 @@ Fredrikshavn til Skagen.
 </figure>
 </div>
 
-<div id="outline-container-org65b2551" class="outline-3">
-<h3 id="org65b2551">Detour og en kendis</h3>
-<div class="outline-text-3" id="text-org65b2551">
+<div id="outline-container-orge9fd507" class="outline-3">
+<h3 id="orge9fd507">Detour og en kendis</h3>
+<div class="outline-text-3" id="text-orge9fd507">
 <p>
 Første stop på næste del af turen, skulle være ved bakkerne nord for Aalborg
 hvor der findes et vældigt fint vikingemusem ved Lindholm Høje.
@@ -703,9 +679,9 @@ havfrue i virkeligheden. Statuen i Asaa er dog vældig fin.
 </div>
 </div>
 
-<div id="outline-container-org670f25c" class="outline-3">
-<h3 id="org670f25c">Regn</h3>
-<div class="outline-text-3" id="text-org670f25c">
+<div id="outline-container-org6ae3b5c" class="outline-3">
+<h3 id="org6ae3b5c">Regn</h3>
+<div class="outline-text-3" id="text-org6ae3b5c">
 <p>
 Fra Asaa ville vi så tage videre nordpå, med endestation i Frederikshavn
 (eller deromkring). Først skulle vi dog lidt ind i landet og forbi en meget
@@ -775,9 +751,9 @@ regnen).
 </div>
 </div>
 
-<div id="outline-container-org6e83e9b" class="outline-3">
-<h3 id="org6e83e9b">Palmer og lyng</h3>
-<div class="outline-text-3" id="text-org6e83e9b">
+<div id="outline-container-orgf0ed2fb" class="outline-3">
+<h3 id="orgf0ed2fb">Palmer og lyng</h3>
+<div class="outline-text-3" id="text-orgf0ed2fb">
 <p>
 Da vi vågnede var regnen væk, vi (og vores cykler) var tørrer. Næste stop:
 Frederikshavn, palmer og softice!
@@ -853,9 +829,9 @@ to dage.
 </div>
 </div>
 
-<div id="outline-container-org94f4ae4" class="outline-3">
-<h3 id="org94f4ae4">Grenen</h3>
-<div class="outline-text-3" id="text-org94f4ae4">
+<div id="outline-container-orgb7e74d1" class="outline-3">
+<h3 id="orgb7e74d1">Grenen</h3>
+<div class="outline-text-3" id="text-orgb7e74d1">
 <p>
 Vi skulle naturligvis en tur ud til Grenen. Der er trods alt noget specielt
 i, at kunne sige, at man har cyklet så langt nord på, som det er muligt i
@@ -935,9 +911,9 @@ det.
 </div>
 </div>
 
-<div id="outline-container-orge8dae25" class="outline-2">
-<h2 id="orge8dae25">Fra Skagen til verdens største sandslot, også hjem igen</h2>
-<div class="outline-text-2" id="text-orge8dae25">
+<div id="outline-container-org2a7794b" class="outline-2">
+<h2 id="org2a7794b">Fra Skagen til verdens største sandslot, også hjem igen</h2>
+<div class="outline-text-2" id="text-org2a7794b">
 <p>
 Sidste del af vores tur endte med at slå smut forbi Hirtshals, Løkken for så
 at ende ved Blokhus. Fra Blokhus cyklede vi tilbage til Aalborg hvor vi tog
@@ -952,9 +928,9 @@ toget hjem til Aarhus igen.
 </figure>
 </div>
 
-<div id="outline-container-org4ca0c12" class="outline-3">
-<h3 id="org4ca0c12">Fisk!</h3>
-<div class="outline-text-3" id="text-org4ca0c12">
+<div id="outline-container-orga7179e0" class="outline-3">
+<h3 id="orga7179e0">Fisk!</h3>
+<div class="outline-text-3" id="text-orga7179e0">
 <p>
 Vi cyklede fra Skagen tidligt om morgenen. Det havde regnet stødt det meste
 af natten, men om morgenen var det heldigvis (mere eller mindre) tørt, og vi
@@ -1020,9 +996,9 @@ døde for ikke så lang tid siden.
 </div>
 </div>
 
-<div id="outline-container-org9751c39" class="outline-3">
-<h3 id="org9751c39">Rubjerg Knude fyr</h3>
-<div class="outline-text-3" id="text-org9751c39">
+<div id="outline-container-orgee2ccf6" class="outline-3">
+<h3 id="orgee2ccf6">Rubjerg Knude fyr</h3>
+<div class="outline-text-3" id="text-orgee2ccf6">
 <p>
 Fra Hirtshals bevægede vi os videre sydpå. Det skulle vise sig, at vi på den
 måde ville bevæger os ind i en kæmpe labyrant af små krogede veje og endeløse
@@ -1067,9 +1043,9 @@ Vi afsluttede dagen på en campingplads i Lønstrup.
 </div>
 </div>
 
-<div id="outline-container-org8b6bd51" class="outline-3">
-<h3 id="org8b6bd51">Papir og sand</h3>
-<div class="outline-text-3" id="text-org8b6bd51">
+<div id="outline-container-org01022ca" class="outline-3">
+<h3 id="org01022ca">Papir og sand</h3>
+<div class="outline-text-3" id="text-org01022ca">
 <p>
 Fra Lønstrup cyklede vi videre til Løkken, hvor et kæmpeloppemarked var godt
 igang. På trods af, at vi brugte en del tid her, købte vi dog ikke de helt
@@ -1108,9 +1084,9 @@ Vores sidste aften på turen brugte vi en fin lille hytte på en campingplads.
 </div>
 </div>
 
-<div id="outline-container-org6715631" class="outline-3">
-<h3 id="org6715631">Hjem igen</h3>
-<div class="outline-text-3" id="text-org6715631">
+<div id="outline-container-org8da89c3" class="outline-3">
+<h3 id="org8da89c3">Hjem igen</h3>
+<div class="outline-text-3" id="text-org8da89c3">
 <p>
 Vi pakkede vores ting, gjorde rent, og cyklede så ned til skulpturparken for
 at se på sandslotte.
@@ -1193,9 +1169,9 @@ Men pyt. Vi var jo på vej tilbage til en varm (og tør!) lejlighed.
 </div>
 </div>
 </div>
-<div id="outline-container-org228781b" class="outline-2">
-<h2 id="org228781b">Afsluttende tanker</h2>
-<div class="outline-text-2" id="text-org228781b">
+<div id="outline-container-orgb11d532" class="outline-2">
+<h2 id="orgb11d532">Afsluttende tanker</h2>
+<div class="outline-text-2" id="text-orgb11d532">
 <p>
 I det hele taget var turen vildt fed, og jeg vil helt klart anbefale det til
 stort set hvem som helst. Det er vildt, hvor meget lille bitte Danmark har at
@@ -1205,7 +1181,7 @@ byde på, så længe man bare udforsker det på den rigtige måde.
 </div>
 </div>
 <div id="postamble" class="status">
-<hr><p class="license">CC BY-SA</p><p class="date">Last modified: 2022-12-22 Thu 16:13</p>
+<hr><p class="license">CC BY-SA</p><p class="date">Published: 2024-01-01</p><p class="date">Last modified: 2024-08-01 Thu 15:13</p>
 </div>
 </body>
 </html>

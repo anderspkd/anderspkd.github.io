@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-07-27 Thu 21:39 -->
-<meta charset="utf-8" />
+<!-- 2024-08-01 Thu 15:13 -->
+<meta charset="utf-8">
 <title>MPC Galore: A Large List of MPC Applications</title>
-<meta name="generator" content="Org Mode" />
-<style>
-  #content { max-width: 60em; margin: auto; }
+<meta name="generator" content="Org mode">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -27,9 +27,8 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #e6e6e6;
-    border-radius: 3px;
-    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,21 +37,21 @@
   pre.src {
     position: relative;
     overflow: auto;
+    padding-top: 1.2em;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    top: -8px;
-    right: 12px;
+    background-color: white;
+    top: -10px;
+    right: 10px;
     padding: 3px;
-    color: #555;
-    background-color: #f2f2f299;
+    border: 1px solid black;
   }
   pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
-  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -187,16 +186,60 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
 </style>
 <link rel="stylesheet" href="/res/style.css" type="text/css"/>
-<script type="text/javascript" src="/res/js/mathjax/tex-chtml.js?config=TeX-AMS_HTML"></script>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "%ALIGN",
+        displayIndent: "%INDENT",
+
+        "HTML-CSS": { scale: %SCALE,
+                        linebreaks: { automatic: "%LINEBREAKS" },
+                        webFont: "%FONT"
+                       },
+        SVG: {scale: %SCALE,
+              linebreaks: { automatic: "%LINEBREAKS" },
+              font: "%FONT"},
+        NativeMML: {scale: %SCALE},
+        TeX: { equationNumbers: {autoNumber: "%AUTONUMBER"},
+               MultLineWidth: "%MULTLINEWIDTH",
+               TagSide: "%TAGSIDE",
+               TagIndent: "%TAGINDENT"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="/res/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="preamble" class="status">
-<ul><a href="/">Front</a><a href="/posts">Posts</a><a href="/publications.html">Publications</a><a href="/mpc_galore.html">MPC Galore</a></ul><hr>
+<ul><a href="/">Front</a><a href="/posts">Posts</a><a href="/publications.html">Publications</a></ul><hr>
 </div>
-<div id="content" class="content">
+<div id="content">
 <header>
 <h1 class="title">MPC Galore: A Large List of MPC Applications</h1>
 </header><p>
@@ -215,9 +258,9 @@ I've stumbled upon. A best effort has been made to include sources where
 relevant.
 </p>
 
-<div id="outline-container-org92d30dd" class="outline-2">
-<h2 id="org92d30dd"><a href="#org92d30dd">Auctions</a></h2>
-<div class="outline-text-2" id="text-org92d30dd">
+<div id="outline-container-org15df99b" class="outline-2">
+<h2 id="org15df99b">Auctions</h2>
+<div class="outline-text-2" id="text-org15df99b">
 <p>
 Secure and private auctions is a great example of where MPC shines: It has many
 participants that have an interest in keeping their personal bids private and
@@ -263,81 +306,105 @@ output. At least if an abort would require bidders to re-submit their bid.
 </div>
 </div>
 
-<div id="outline-container-org81a0561" class="outline-2">
-<h2 id="org81a0561"><a href="#org81a0561">Voting</a></h2>
-<div class="outline-text-2" id="text-org81a0561">
+<div id="outline-container-orgcd49054" class="outline-2">
+<h2 id="orgcd49054">Voting</h2>
+<div class="outline-text-2" id="text-orgcd49054">
 <p>
-Voting is (in most scenarios) a private affair. Indeed, in many countries,
-privacy of a vote is something guaranteed by law.
+Voting is (in most scenarios) a private affair. Indeed, in many countries, voter
+privacy is guaranteed by law. And while electronic voting is a very touchy
+subject, it is nevertheless well-suited for MPC.
+</p>
+
+<p>
+The application is fairly simple: Each user provides a vote for their candidate
+of choice in secret-shared form, and the votes are counted securely. When the
+poll closes, the total tally for each candidate is revealed.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgaa4339f" class="outline-2">
-<h2 id="orgaa4339f"><a href="#orgaa4339f">Polls and Surveys</a></h2>
-<div class="outline-text-2" id="text-orgaa4339f">
+<div id="outline-container-org91fdae7" class="outline-2">
+<h2 id="org91fdae7">Polls and Surveys</h2>
+<div class="outline-text-2" id="text-org91fdae7">
 <p>
 A poll, or survey, can in principle be viewed as a type of vote.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgca04ec8" class="outline-2">
-<h2 id="orgca04ec8"><a href="#orgca04ec8">Dark Pools</a></h2>
+<div id="outline-container-org74bbd90" class="outline-2">
+<h2 id="org74bbd90">Dark Pools</h2>
+<div class="outline-text-2" id="text-org74bbd90">
+<p>
+A dark pool is what you call a bunch of institutional investors that meet in
+secret to trade securities without revealing the trade until after it has been
+finalized. Clearly, this must rely on a trusted party to facilitate the
+trade. And if no such party can be found, then at least we have a use-case for
+MPC.
+</p>
+
+<p>
+Dark Pools in MPC is essentially a type of double auction.
+</p>
+</div>
 </div>
 
-<div id="outline-container-orga65970a" class="outline-2">
-<h2 id="orga65970a"><a href="#orga65970a">Statistics</a></h2>
-<div class="outline-text-2" id="text-orga65970a">
+<div id="outline-container-org8d85894" class="outline-2">
+<h2 id="org8d85894">Inventory Matching</h2>
+</div>
+
+<div id="outline-container-org8ad988d" class="outline-2">
+<h2 id="org8ad988d">Statistics</h2>
+<div class="outline-text-2" id="text-org8ad988d">
 <ul class="org-ul">
 <li>Linear regression</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0889417" class="outline-2">
-<h2 id="org0889417"><a href="#org0889417">Machine Learning</a></h2>
-<div class="outline-text-2" id="text-org0889417">
+<div id="outline-container-org9c65af3" class="outline-2">
+<h2 id="org9c65af3">Machine Learning</h2>
+<div class="outline-text-2" id="text-org9c65af3">
 </div>
-<div id="outline-container-orgc62293f" class="outline-3">
-<h3 id="orgc62293f"><a href="#orgc62293f">Inference</a></h3>
-</div>
-
-<div id="outline-container-org94243e8" class="outline-3">
-<h3 id="org94243e8"><a href="#org94243e8">Training</a></h3>
+<div id="outline-container-orge4e41cb" class="outline-3">
+<h3 id="orge4e41cb">Inference</h3>
 </div>
 
-<div id="outline-container-org3e1ea4a" class="outline-3">
-<h3 id="org3e1ea4a"><a href="#org3e1ea4a">Federated Learning</a></h3>
+<div id="outline-container-orgce7ca6b" class="outline-3">
+<h3 id="orgce7ca6b">Training</h3>
+</div>
+
+<div id="outline-container-org016c50b" class="outline-3">
+<h3 id="org016c50b">Federated Learning</h3>
 </div>
 </div>
 
-<div id="outline-container-org96328e5" class="outline-2">
-<h2 id="org96328e5"><a href="#org96328e5">Graph Computations</a></h2>
+<div id="outline-container-orgf42bfa9" class="outline-2">
+<h2 id="orgf42bfa9">Graph Computations</h2>
 </div>
 
-<div id="outline-container-org1fff4de" class="outline-2">
-<h2 id="org1fff4de"><a href="#org1fff4de">Digital Signatures</a></h2>
+<div id="outline-container-orgfeec730" class="outline-2">
+<h2 id="orgfeec730">Digital Signatures</h2>
 </div>
 
-<div id="outline-container-org8b409ba" class="outline-2">
-<h2 id="org8b409ba"><a href="#org8b409ba">Genomics</a></h2>
+<div id="outline-container-orgc5d79ea" class="outline-2">
+<h2 id="orgc5d79ea">Genomics</h2>
 </div>
 
-<div id="outline-container-orgff615d2" class="outline-2">
-<h2 id="orgff615d2"><a href="#orgff615d2">Shuffling</a></h2>
+<div id="outline-container-org56f764e" class="outline-2">
+<h2 id="org56f764e">Shuffling</h2>
 </div>
 
-<div id="outline-container-org6248401" class="outline-2">
-<h2 id="org6248401"><a href="#org6248401">Escrow Allegation</a></h2>
+<div id="outline-container-org3bb1a0c" class="outline-2">
+<h2 id="org3bb1a0c">Escrow Allegation</h2>
 </div>
 
-<div id="outline-container-org7487323" class="outline-2">
-<h2 id="org7487323"><a href="#org7487323">k-th Ranked Element</a></h2>
+<div id="outline-container-orgfdaee8c" class="outline-2">
+<h2 id="orgfdaee8c">k-th Ranked Element</h2>
 </div>
 </div>
 <div id="postamble" class="status">
-<hr><p class="license">CC BY-SA</p><p class="date">Last modified: 2023-07-27 Thu 21:39</p>
+<hr><p class="license">CC BY-SA</p><p class="date">Last modified: 2024-08-01 Thu 15:13</p>
 </div>
 </body>
 </html>

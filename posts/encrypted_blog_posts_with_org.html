@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2023-07-26 Wed 15:13 -->
-<meta charset="utf-8" />
+<!-- 2024-08-01 Thu 15:13 -->
+<meta charset="utf-8">
 <title>Publishing "private" blog posts with Emacs and org-mode</title>
-<meta name="generator" content="Org Mode" />
-<style>
-  #content { max-width: 60em; margin: auto; }
+<meta name="generator" content="Org mode">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
@@ -27,9 +27,8 @@
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
   pre {
-    border: 1px solid #e6e6e6;
-    border-radius: 3px;
-    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
     padding: 8pt;
     font-family: monospace;
     overflow: auto;
@@ -38,21 +37,21 @@
   pre.src {
     position: relative;
     overflow: auto;
+    padding-top: 1.2em;
   }
   pre.src:before {
     display: none;
     position: absolute;
-    top: -8px;
-    right: 12px;
+    background-color: white;
+    top: -10px;
+    right: 10px;
     padding: 3px;
-    color: #555;
-    background-color: #f2f2f299;
+    border: 1px solid black;
   }
   pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
-  pre.src-authinfo::before { content: 'Authinfo'; }
   pre.src-C:before { content: 'C'; }
   /* pre.src-C++ doesn't work in CSS */
   pre.src-clojure:before { content: 'Clojure'; }
@@ -187,18 +186,41 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
 </style>
 <link rel="stylesheet" href="/res/style.css" type="text/css"/>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
-<ul><a href="/">Front</a><a href="/posts">Posts</a><a href="/publications.html">Publications</a><a href="/mpc_galore.html">MPC Galore</a></ul><hr>
+<ul><a href="/">Front</a><a href="/posts">Posts</a><a href="/publications.html">Publications</a></ul><hr>
 </div>
-<div id="content" class="content">
+<div id="content">
 <header>
 <h1 class="title">Publishing "private" blog posts with Emacs and org-mode</h1>
-</header><div class="PREVIEW" id="org245c3cc">
+</header><div class="PREVIEW" id="orgf93fdce">
 <p>
 A coworker of mine had a really clever idea for sending out invitations: Encrypt
 the invitation, upload the invitation on some website that allows hosting static
@@ -213,9 +235,9 @@ python.
 </div>
 
 
-<div id="outline-container-orgf624f8c" class="outline-2">
-<h2 id="orgf624f8c">How it works</h2>
-<div class="outline-text-2" id="text-orgf624f8c">
+<div id="outline-container-org9da7734" class="outline-2">
+<h2 id="org9da7734">How it works</h2>
+<div class="outline-text-2" id="text-org9da7734">
 <p>
 Conceptually, the idea is very simple:
 </p>
@@ -235,9 +257,9 @@ But less see how it works a bit more in detail.
 </p>
 </div>
 
-<div id="outline-container-orgbbc1a35" class="outline-3">
-<h3 id="orgbbc1a35">From org to HTML</h3>
-<div class="outline-text-3" id="text-orgbbc1a35">
+<div id="outline-container-orgf5930d9" class="outline-3">
+<h3 id="orgf5930d9">From org to HTML</h3>
+<div class="outline-text-3" id="text-orgf5930d9">
 <p>
 The first step simply involves publishing the org file as one normally
 would. The only difference is that we will publish the file into a temporary
@@ -252,9 +274,9 @@ directory <code>hidden_temp</code>, or something.
 </div>
 </div>
 
-<div id="outline-container-org2d75254" class="outline-3">
-<h3 id="org2d75254">Encrypting the HTML file</h3>
-<div class="outline-text-3" id="text-org2d75254">
+<div id="outline-container-org3083490" class="outline-3">
+<h3 id="org3083490">Encrypting the HTML file</h3>
+<div class="outline-text-3" id="text-org3083490">
 <p>
 The next step is to encrypt the HTML file. While the encryption itself is done
 using a small python script, calling it can again be done through emacs as part
@@ -269,12 +291,12 @@ this
 
 <div class="org-src-container">
 <pre class="src src-lisp">("B-secret-publish"
-         :base-directory ,(blog::make-directory "hidden_temp")
-         :publishing-directory ,(blog::make-publishing-directory "hidden")
-         :base-extension "html"
-         :recursive t
-         :secrets-file ,(blog::make-directory "secrets.txt")
-         :publishing-function blog::publish-encrypted)
+	 :base-directory ,(blog::make-directory "hidden_temp")
+	 :publishing-directory ,(blog::make-publishing-directory "hidden")
+	 :base-extension "html"
+	 :recursive t
+	 :secrets-file ,(blog::make-directory "secrets.txt")
+	 :publishing-function blog::publish-encrypted)
 </pre>
 </div>
 
@@ -288,8 +310,8 @@ encryption key gets stored.
 <div class="org-src-container">
 <pre class="src src-lisp">(defun blog::publish-encrypted (plist filename pub-dir)
   (let ((output-filename (concat pub-dir (file-name-nondirectory filename)))
-        (secrets-filename (plist-get plist :secrets-file))
-        (encrypt-py (blog::make-directory "scripts" "encrypt.py")))
+	(secrets-filename (plist-get plist :secrets-file))
+	(encrypt-py (blog::make-directory "scripts" "encrypt.py")))
     (message (format "Encrypting %s %s %s" filename output-filename secrets-filename))
     (start-process "encrypt-blog-post" nil encrypt-py filename output-filename secrets-filename)))
 </pre>
@@ -324,7 +346,7 @@ ct = b''
 
 with open(input_filename, 'rb') as f:
     for line in f:
-        ct += encryptor.update(line)
+	ct += encryptor.update(line)
     ct += encryptor.finalize()
 
 ctxt = b64encode(ct)
@@ -357,9 +379,9 @@ actually possible to see the page.
 </div>
 </div>
 
-<div id="outline-container-orgcc05d7f" class="outline-3">
-<h3 id="orgcc05d7f">Decrypting and displaying the page</h3>
-<div class="outline-text-3" id="text-orgcc05d7f">
+<div id="outline-container-org02295ea" class="outline-3">
+<h3 id="org02295ea">Decrypting and displaying the page</h3>
+<div class="outline-text-3" id="text-org02295ea">
 <p>
 The last step is to decrypt and display the page&#x2014;that is, reverting the steps
 above, but at the visitors end.
@@ -387,33 +409,33 @@ things:
     let ctxt = Uint8Array.from(atob(document.getElementById('c').innerHTML), c =&gt; c.charCodeAt(0))
 
     window.crypto.subtle.importKey(
-        "raw",
-        key,
-        {
-            name: "AES-CTR"
-        },
-        false,
-        ["decrypt"]
+	"raw",
+	key,
+	{
+	    name: "AES-CTR"
+	},
+	false,
+	["decrypt"]
     ).then(function (k) {
-        window.crypto.subtle.decrypt(
-            {
-                name: "AES-CTR",
-                counter: iv,
-                length: 128
-            },
-            k,
-            ctxt
-        ).then(function(decrypted) {
-            let td = new TextDecoder()
-            let actual_page_content = td.decode(decrypted)
-            document.open()
-            document.write(actual_page_content)
-            document.close()
-        }).catch(function(err){
-            console.log(err)
-        })
+	window.crypto.subtle.decrypt(
+	    {
+		name: "AES-CTR",
+		counter: iv,
+		length: 128
+	    },
+	    k,
+	    ctxt
+	).then(function(decrypted) {
+	    let td = new TextDecoder()
+	    let actual_page_content = td.decode(decrypted)
+	    document.open()
+	    document.write(actual_page_content)
+	    document.close()
+	}).catch(function(err){
+	    console.log(err)
+	})
     }).catch(function(err) {
-        console.log(err)
+	console.log(err)
     });
 })();
 </pre>
@@ -422,13 +444,13 @@ things:
 </div>
 </div>
 
-<div id="outline-container-orgecc4881" class="outline-2">
-<h2 id="orgecc4881">Limitations</h2>
-<div class="outline-text-2" id="text-orgecc4881">
+<div id="outline-container-org9235531" class="outline-2">
+<h2 id="org9235531">Limitations</h2>
+<div class="outline-text-2" id="text-org9235531">
 <p>
 This whole thing does not do anything else besides encrypt a static HTML page,
 which in particular means that it wont encrypt any content that is included from
-external sources. So don't expect it to hide e.g., the content of an img tag.<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
+external sources. So don't expect it to hide e.g., the content of an img tag.<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
 </p>
 
 <p>
@@ -439,9 +461,9 @@ after all).
 </div>
 </div>
 
-<div id="outline-container-orgc4aca74" class="outline-2">
-<h2 id="orgc4aca74">Concluding</h2>
-<div class="outline-text-2" id="text-orgc4aca74">
+<div id="outline-container-orgf8eaf79" class="outline-2">
+<h2 id="orgf8eaf79">Concluding</h2>
+<div class="outline-text-2" id="text-orgf8eaf79">
 <p>
 Anyway. This is pretty neat, I think. I'm not sure what I'll use it for, but now
 it exists and it seems to work.
@@ -460,7 +482,7 @@ The key is: <code>+nR3AKqEZqlqakavJyoCaj7ZFRdRAh4ZccNZsDCIL/q+AWop9CssObbgiZrGT5
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
 Although one can include the image inline as a base64 encoded string, which would then result in the image getting encrypted.
 </p></div></div>
 
@@ -468,7 +490,7 @@ Although one can include the image inline as a base64 encoded string, which woul
 </div>
 </div></div>
 <div id="postamble" class="status">
-<hr><p class="license">CC BY-SA</p><p class="date">Last modified: 2023-07-26 Wed 15:13</p>
+<hr><p class="license">CC BY-SA</p><p class="date">Published: 2024-01-01</p><p class="date">Last modified: 2024-08-01 Thu 15:13</p>
 </div>
 </body>
 </html>
