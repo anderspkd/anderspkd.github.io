@@ -74,6 +74,10 @@ caption.t-above span.table-number {
     color: #333333;
 }
 
+#content .PREVIEW {
+    font-style: italic;
+}
+
 .src {
     font-size: 70%;
     line-height: 20px

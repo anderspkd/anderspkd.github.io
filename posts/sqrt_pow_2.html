@@ -3,7 +3,7 @@
 <head>
 <!-- 2025-03-15 Sat 17:07 -->
 <meta charset="utf-8" />
-<title>Latest posts</title>
+<title>Computing a square root modulo a power of two</title>
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -190,6 +190,7 @@
   .org-svg { }
 </style>
 <link rel="stylesheet" href="/res/style.css" type="text/css"/>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -197,76 +198,188 @@
 </div>
 <div id="content" class="content">
 <header>
-<h1 class="title">Latest posts</h1>
-</header><div id="outline-container-orgb631f79" class="outline-2">
-<h2 id="orgb631f79">Computing a square root modulo a power of two&#xa0;&#xa0;&#xa0;<span class="tag"><span class="MPC">MPC</span></span></h2>
-<div class="outline-text-2" id="text-orgb631f79">
+<h1 class="title">Computing a square root modulo a power of two</h1>
+</header><div class="PREVIEW" id="orgf85f6c6">
 <p>
 A short note on how to compute a square root modulo a power of two.
- <a href="sqrt_pow_2.html">&#x2026; read more</a>
 </p>
-<hr>
+
 </div>
-</div>
-<div id="outline-container-org4d7d992" class="outline-2">
-<h2 id="org4d7d992">Publishing "private" blog posts with Emacs and org-mode&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Emacs">Emacs</span></span></h2>
-<div class="outline-text-2" id="text-org4d7d992">
+<div id="outline-container-org3017382" class="outline-2">
+<h2 id="org3017382">The solution</h2>
+<div class="outline-text-2" id="text-org3017382">
 <p>
-A coworker of mine had a really clever idea for sending out invitations: Encrypt
-the invitation, upload the invitation on some website that allows hosting static
-content (e.g., github pages) and let the visitors enter the decryption key.
+Computing a square root modulo a power of two turns out to be remarkably simple.
+E.g., for \( 2^{64} \) the simple function shown below written in Sage does the job (and obviously, this function can be used for any power).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #778c00; font-weight: bold;">def</span> <span style="color: #007ec4;">sqrt_pow_2</span>(v):
+    <span style="color: #778c00; font-weight: bold;">assert</span> v % 8 == 1
+    <span style="color: #007ec4;">e</span> = 1
+    <span style="color: #007ec4;">v_</span> = (v - 1) &gt;&gt; 2
+    <span style="color: #778c00; font-weight: bold;">for</span> i <span style="color: #778c00; font-weight: bold;">in</span> <span style="color: #596e76; font-weight: bold;">range</span>(1, 64):
+        <span style="color: #007ec4;">e</span> = e - (e^2 - e - v_)
+    <span style="color: #778c00; font-weight: bold;">return</span> 2*e - 1
+
+<span style="color: #007ec4;">Z64</span> = IntegerModRing(2^64)
+<span style="color: #007ec4;">v</span> = Z64(17)
+sqrt_pow_2(v)^2 == v  <span style="color: #98a6a6;"># </span><span style="color: #98a6a6;">returns True</span>
+</pre>
+</div>
+
+<p>
+If you don't care about how the above function works (just that it does), then congratulations, you've now reached the end of this post.
 </p>
 
 <p>
-This blog post is really just about that, but automated a bit using a bit of
-python.
- <a href="encrypted_blog_posts_with_org.html">&#x2026; read more</a>
+Otherwise, keep reading.
+The rest of this post is my best effort at explaining <i>how</i> <code>sqrt_pow_2</code> works.
 </p>
-<hr>
 </div>
 </div>
-<div id="outline-container-orgb3b2046" class="outline-2">
-<h2 id="orgb3b2046">Are PETs and Algorithmetic Accountability at loggerheads?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="MPC">MPC</span>&#xa0;<span class="ML">ML</span></span></h2>
-<div class="outline-text-2" id="text-orgb3b2046">
+<div id="outline-container-org418128a" class="outline-2">
+<h2 id="org418128a">The problem</h2>
+<div class="outline-text-2" id="text-org418128a">
 <p>
-Combining MPC and ML with the goal of obtaining something "practical" may not be
-as straightforward as it seems. In fact, MPC might exacerbate certain issues
-that arise in deployments of ML. As security practitioners, we must be aware of
-these potential pitfalls and guide our efforts accordingly.
+Let \( v\in\mathbb{Z}_{2^k} \) for some \( k \). The goal is to find some \( e\in\mathbb{Z}_{2^k} \) such that \( e^2 \equiv v \pmod{2^k} \).
+The value \( e \) can be viewed as the square root of \( v \).
 </p>
 
 <p>
-This post is an extension/adaption of a presentation I gave at HotPETs 2023 in
-Lausanne.
- <a href="hotpets2023.html">&#x2026; read more</a>
+A generic way to compute a square root modulo some \( p^k \) is to find a root for the polynomial \( f(X) = X^2 - v \).
+This root, let's call it \( e \), will clearly satisfy \( e^2 \equiv v \pmod{p^k} \).
 </p>
-<hr>
-</div>
-</div>
-<div id="outline-container-org7e6f8f0" class="outline-2">
-<h2 id="org7e6f8f0">Cats or Croissants&#xa0;&#xa0;&#xa0;<span class="tag"><span class="ML">ML</span>&#xa0;<span class="Silly">Silly</span></span></h2>
-<div class="outline-text-2" id="text-org7e6f8f0">
+
 <p>
-Can popular image prediction APIs help us distinguish pictures of cats from
-pictures of crossaints?  Turns out the answer is yes.
- <a href="cats_or_croissants.html">&#x2026; read more</a>
+One way to find such a root is to (1) find a root \( e' \) modulo \( p^{i} \), then (2) use a <a href="https://en.wikipedia.org/wiki/Hensel%27s_lemma#Using_derivatives_for_lifting_roots">Hensel lift</a> to find a root modulo \( p^{i+1} \).
+This we continue to do until \( i = k \).
 </p>
-<hr>
-</div>
-</div>
-<div id="outline-container-org8607e67" class="outline-2">
-<h2 id="org8607e67">På tur i det nordjyske&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Personal">Personal</span>&#xa0;<span class="Biking">Biking</span></span></h2>
-<div class="outline-text-2" id="text-org8607e67">
+
 <p>
-I sommeren 2021 tog min kæreste og jeg på cykeltur rundt omkring i det nordjyske.
-Dette indlæg giver et kort overblik over vores rute, samt de forskellige ting vi så, og steder vi besøgte.
- <a href="tur_i_det_nordjyske.html">&#x2026; read more</a>
+The problem is just that, in order to use a Hensel lift, we must have \( f'(X) \not \equiv 0 \pmod{p} \), which is not the case when \( p=2 \).
 </p>
 </div>
 </div>
+<div id="outline-container-orgdfd5263" class="outline-2">
+<h2 id="orgdfd5263">The trick</h2>
+<div class="outline-text-2" id="text-orgdfd5263">
+<p>
+The <a href="https://math.stackexchange.com/a/2302062">trick</a> is to consider a <i>different</i> polynomial \( g \), which also has a root from which a square root can be computed, but for which \( g'(X) \not \equiv 0 \pmod{2} \) is the case.
+One such polynomial is
+</p>
+
+<p>
+\[
+  g(X) = X^2 - X - \frac{v - 1}{2},
+\]
+</p>
+
+<p>
+which has a root at \( e = (\sqrt{v} + 1)/2 \).
+</p>
 </div>
+</div>
+<div id="outline-container-orgd946b86" class="outline-2">
+<h2 id="orgd946b86">Hensel lifting</h2>
+<div class="outline-text-2" id="text-orgd946b86">
+<p>
+Consider the polynomial \( g \) and let \( e \) be a root modulo \( 2^{i} \) for some \( i \).
+I.e., \( g(e) \equiv 0 \pmod{2^{i}} \).
+</p>
+
+<p>
+Then \( e' = e + t\cdot 2^{i} \) for some \( t\in\mathbb{Z}_2 \) is a root modulo \( 2^{i+1} \).
+We can calculate \( t \) by writing everything out:
+</p>
+
+\begin{align*}
+  g(e') &= g(e + t\cdot 2^{i}) \\
+        &= (e + t\cdot 2^{i})^2 - (e + t\cdot 2^{i}) - \frac{v - 1}{2} \\
+        &= e^2 + (t\cdot 2^{i})^2 + e\cdot t\cdot 2^{i+1} - e - t\cdot 2^{i} - \frac{v - 1}{2} \\
+        &= (e^2 - e - \frac{v - 1}{2}) + t\cdot 2^{i}\cdot (2\cdot e - 1) + (t\cdot 2^{i})^2 \\
+        &\equiv g(e) + t\cdot 2^{i}\cdot g'(e) \pmod{2^{i+1}},
+\end{align*}
+
+<p>
+and so
+</p>
+
+\begin{align*}
+  t \equiv \frac{-g(e)/2^{i}}{g'(e)} \pmod{2^{i+1}}
+\end{align*}
+</div>
+</div>
+<div id="outline-container-orge5870c9" class="outline-2">
+<h2 id="orge5870c9">Looping back around</h2>
+<div class="outline-text-2" id="text-orge5870c9">
+<p>
+The above gives us a straightforward way to compute a square root of \( v\in\mathbb{Z}_{2^{k}} \):
+</p>
+<ol class="org-ol">
+<li>Set \( i \leftarrow 1 \) and find an \( e \) such that \( g(e) \equiv 0 \pmod{2} \). This shouldn't be too hard to find.<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></li>
+<li>Compute \( e' \leftarrow e + t\cdot 2^{i} \) where \( t = (-g(e) / 2^{i})/g'(e) \).</li>
+<li>Set \( i \leftarrow i + 1 \) and \( e \leftarrow e' \).</li>
+<li>Repeat step 2 and 3 until \( i = k \).</li>
+<li>Return \( 2\cdot e - 1 \).</li>
+</ol>
+
+<p>
+That is <i>almost</i> what the code at the top of this post does.
+What remains is to realize that, first
+</p>
+
+\begin{align*}
+  e' &= e + t\cdot 2^{i} \\
+     &= e - \frac{g(e)/2^{i}}{g'(e)}\cdot 2^{i} \\
+     &= e - \frac{g(e)}{g'(e)}.
+\end{align*}
+
+<p>
+Second, \( g'(e) \) only has to be computed modulo 2, which honestly doesn't leave a lot of options.
+That is, we can simplify the above to
+</p>
+
+\begin{align*}
+  e' &= e - g(e) \\
+     &= e - (e^2 - e - \frac{v - 1}{2})
+\end{align*}
+
+<p>
+Which gives the final expression.<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>
+</p>
+</div>
+</div>
+<div id="outline-container-orgd2405ef" class="outline-2">
+<h2 id="orgd2405ef">Bonus</h2>
+<div class="outline-text-2" id="text-orgd2405ef">
+<p>
+The <code>sqrt_pow_2</code> function gives us one square root. Can we find them all?
+</p>
+
+<p>
+Yes, and it is in fact easy to do so:
+If \( e \) is a square root modulo \( 2^{k} \), then \( -e \), \( e + 2^{k-1} \) and \( -e + 2^{k-1} \) are square roots as well.
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+In fact, it'll be harder to find an \( e\in\mathbb{Z}_2 \) which does <i>not</i> satisfy this criteria :) 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+The last thing to mention is that \( v \) only has a square root modulo \( 2^{k} \) if \( v \equiv 1 \pmod{8} \). Which I guess is a good thing since otherwise the fraction \( (v - 1)/2 \) wouldn't be well defined.
+</p></div></div>
+
+
+</div>
+</div></div>
 <div id="postamble" class="status">
-<hr><p class="license">CC BY-SA</p>
+<hr><p class="license">CC BY-SA</p><p class="date">Published: 2025-02-28</p>
 </div>
 </body>
 </html>
